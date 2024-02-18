@@ -12,8 +12,8 @@ int main() {
 
 	int choice = 0;
 	bool flag = true;
-	const int SIZE = 2;
-	Parents parents[SIZE];
+	const int SIZE = 5;
+	Parents parents[SIZE] = {};
 
 
 	do {

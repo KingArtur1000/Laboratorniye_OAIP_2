@@ -1,23 +1,24 @@
 #pragma once	 /*директива для предотвращения многократного включения заголовочных файлов*/
-#include <string>
+
+
+const int LEN = 256;
 
 
 struct Mum {
 	int age = 0;
 	char sex = 'Ж';
-	std::string name = "";
+	char name[LEN];
 };
+
 
 struct Dad {
 	int age = 0;
 	char sex = 'М';
-	std::string name = "";
+	char name[LEN];
 };
+
 
 union Parents {
 	Mum mum = {0, 'Ж', ""};
 	Dad dad;
-
-	Parents() {}	//Да-да не забываем, что для union нет конструктора по умолчанию!
-	~Parents() {}
 };

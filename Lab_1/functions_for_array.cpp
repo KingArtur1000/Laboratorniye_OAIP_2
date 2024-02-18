@@ -16,16 +16,16 @@ void input(Parents* parents, const int SIZE) {
 	if (choice == 1) {
 		for (int i = 0; i < SIZE; i++) {
 			cout << "\tВведите данные для мамы №" << i + 1 << ":\n";
-			cout << "Введите возраст: "; cin >> parents[i].mum.age;
-			cout << "Введите ФИО: ";	 cin >> parents[i].mum.name;	cout << '\n';
+			cout << "Введите возраст: "; cin >> parents[i].mum.age;		cin.clear(); cin.ignore();
+			cout << "Введите ФИО: ";	 cin.getline(parents[i].mum.name, sizeof(parents[i].mum.name));	cout << '\n';
 			parents[i].mum.sex = 'Ж';
 		}
 	}		
 	else if (choice == 2) {
 		for (int i = 0; i < SIZE; i++) {
 			cout << "\tВведите данные для папы №" << i + 1 << ":\n";
-			cout << "Введите возраст: "; cin >> parents[i].dad.age;
-			cout << "Введите ФИО: ";	 cin >> parents[i].dad.name;	cout << '\n';
+			cout << "Введите возраст: "; cin >> parents[i].dad.age;		cin.clear(); cin.ignore();
+			cout << "Введите ФИО: ";	 cin.getline(parents[i].dad.name, sizeof(parents[i].dad.name));	cout << '\n';
 			parents[i].dad.sex = 'М';
 		}
 	}
@@ -35,9 +35,10 @@ void input(Parents* parents, const int SIZE) {
 void remove(Parents* parents, const int SIZE) {
 	for (int i = 0; i < SIZE; i++) {
 		parents[i].mum.age = 0;
-		parents[i].mum.name = "\0";
+		strcpy_s(parents[i].mum.name, sizeof(parents[i].mum.name), "");
+		
 		parents[i].dad.age = 0;
-		parents[i].dad.name = "\0";
+		strcpy_s(parents[i].dad.name, sizeof(parents[i].dad.name), "");
 	}
 
 	cout << "\tДанные массива успешно удалены!\n\n";
