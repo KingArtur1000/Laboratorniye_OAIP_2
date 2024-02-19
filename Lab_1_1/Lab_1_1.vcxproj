@@ -18,25 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="functions_for_array.cpp" />
-    <ClCompile Include="functions_extra.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="functions_for_files.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="enum.h" />
-    <ClInclude Include="functions_for_array.h" />
-    <ClInclude Include="functions_for_files.h" />
-    <ClInclude Include="functions_extra.h" />
-    <ClInclude Include="lab_1.h" />
-    <ClInclude Include="structures.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ac027e34-9653-412c-8837-7e78d630855a}</ProjectGuid>
-    <RootNamespace>Lab1</RootNamespace>
+    <ProjectGuid>{6bd77e77-7401-44e9-8e4e-2e136e4aa3b5}</ProjectGuid>
+    <RootNamespace>Lab11</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -152,6 +138,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cmath>	//Для проверки на целочисленность ( floor() )
 #include "lab_1.h"	//Подключили собственный заголовочный файл
 
 
@@ -17,7 +14,7 @@ int main() {
 
 
 	do {
-		cout << "\t*МЕНЮ ПРОГРАММЫ*\n";
+		cout << "\n\t*МЕНЮ ПРОГРАММЫ*\n";
 		cout << "1) Добавление элементов\n";
 		cout << "2) Удаление элементов\n";
 		cout << "3) Вывод одной структуры\n";
@@ -25,7 +22,7 @@ int main() {
 		cout << "5) Сохранение в файл\n";
 		cout << "6) Чтение из файла\n";
 		cout << "7) Завершение программы\n\n";
-		cout << "\tВыберите нужную функцию --> ";	 cin >> choice;		cout << '\n';
+		cout << "\tВыберите нужную функцию --> ";	 cin >> choice;		cout << '\n' << '\n';
 		
 
 		switch (choice) {
@@ -35,7 +32,9 @@ int main() {
 		case OUTPUT_ARR:	output_arr(parents, SIZE);	break;
 		case SAVING:		saving(parents, SIZE);		break;
 		case READING:		reading(parents, SIZE);		break;
-		case EXIT:			flag = false;				break;
+		case EXIT:			exit(flag);					break;
+
+		default:			error();	break;
 		}
 
 	} while (flag);
