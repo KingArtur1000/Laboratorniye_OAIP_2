@@ -95,10 +95,10 @@ void remove(Parents* parents, const int SIZE) {
 		cout << "\tВаш выбор --> ";		cin >> choice;	cout << '\n' << '\n';
 
 		if (choice == 1) {
-			int i = choice - 1;
-
 			cout << "\tВведите номер структуры (от 1 до 5)\n";
 			cout << "Ваш выбор --> ";	cin >> choice;	 cout << '\n' << '\n';
+
+			int i = choice - 1;	//Индекс
 
 			parents[i].mum.age = 0;
 			strcpy_s(parents[i].mum.name, sizeof(parents[i].mum.name), "");
@@ -163,7 +163,7 @@ void output(Parents* parents, const int SIZE) {
 
 void output_arr(Parents* parents, const int SIZE) {
 	int choice = 0;
-	bool is_struct_empty = false;
+	bool is_struct_empty = true;
 	
 
 	cout << "\tВы уверены, что хотите вывести данные массива?\n";
@@ -179,18 +179,21 @@ void output_arr(Parents* parents, const int SIZE) {
 			int numb = i + 1;
 
 			if ((parents[numb - 1].dad.age != 0) && (parents[numb - 1].dad.sex == 'М')) {
+				is_struct_empty = false;
+
+				cout << "\tCтруктура №" << numb << ":\n";
 				cout << "Возраст папы: " << parents[i].dad.age << '\n';
 				cout << "ФИО папы: " << parents[i].dad.name << '\n';
 				cout << "Пол: " << parents[i].dad.sex << '\n' << '\n';
+
 			}
 			else if ((parents[numb - 1].mum.age != 0) && (parents[numb - 1].mum.sex == 'Ж')) {
+				is_struct_empty = false;
+
 				cout << "\tCтруктура №" << numb << ":\n";
 				cout << "Возраст мамы: " << parents[i].mum.age << '\n';
 				cout << "ФИО мамы: " << parents[i].mum.name << '\n';
 				cout << "Пол: " << parents[i].mum.sex << '\n' << '\n';
-			}
-			else {
-				is_struct_empty = true;
 			}
 		}
 

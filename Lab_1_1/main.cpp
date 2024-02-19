@@ -79,6 +79,7 @@ int main() {
 	}
 	else { cout << "\tНе удалось открыть файл!\n"; }
 
+	system("pause");
 
 	return 0;
 }

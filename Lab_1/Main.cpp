@@ -26,17 +26,16 @@ int main() {
 		
 
 		switch (choice) {
-		case ADDING:		input(parents, SIZE);		break;
-		case REMOVING:		remove(parents, SIZE);		break;
-		case OUTPUT:		output(parents, SIZE);		break;
-		case OUTPUT_ARR:	output_arr(parents, SIZE);	break;
-		case SAVING:		saving(parents, SIZE);		break;
-		case READING:		reading(parents, SIZE);		break;
-		case EXIT:			exit(flag);					break;
+		case ADDING:		input(parents, SIZE);				break;
+		case REMOVING:		remove(parents, SIZE);				break;
+		case OUTPUT:		output(parents, SIZE);				break;
+		case OUTPUT_ARR:	output_arr(parents, SIZE);			break;
+		case SAVING:		saving(parents, SIZE);				break;
+		case READING:		reading(parents, SIZE);				break;
+		case EXIT:			exit(flag);		system("pause");	break;
 
 		default:			error();	break;
 		}
-
 	} while (flag);
 
 
