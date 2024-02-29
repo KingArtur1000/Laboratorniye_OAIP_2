@@ -8,6 +8,7 @@ int main() {
 
 
 	int choice = 0;
+	int index = 0;
 	int size = 0;	//Не хочется в каждей функции, где сортируем массив вызывать arr.size()... Лучше просто передавать как параметр
 	bool flag = true;
 	bool is_sorted = false;		//По умолчанию массив понятное дело не будет отсортированным
@@ -17,10 +18,6 @@ int main() {
 	input_size_of_arr(arr, size);
 	fill_arr(arr, size);
 	output(arr, size, is_sorted);
-
-
-	//После запроса размера массива можем инициализировать переменные для работы с рекурсивной сортировкой
-	int index = 0;
 
 
 	do {
