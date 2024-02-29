@@ -1,11 +1,11 @@
-#include "functions_for_sort.h"
+п»ї#include "functions_for_sort.h"
 
 
 int find_min_index(vector<int> arr, int begin, int end)
 {
-    int min_index = begin; // Предполагаем, что минимальный элемент - это arr[i]
+    int min_index = begin; // РџСЂРµРґРїРѕР»Р°РіР°РµРј, С‡С‚Рѕ РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ - СЌС‚Рѕ arr[i]
 
-    // Идем по оставшимся элементам и обновляем min_index, если находим элемент меньше текущего минимального
+    // РРґРµРј РїРѕ РѕСЃС‚Р°РІС€РёРјСЃСЏ СЌР»РµРјРµРЅС‚Р°Рј Рё РѕР±РЅРѕРІР»СЏРµРј min_index, РµСЃР»Рё РЅР°С…РѕРґРёРј СЌР»РµРјРµРЅС‚ РјРµРЅСЊС€Рµ С‚РµРєСѓС‰РµРіРѕ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ
     for (int k = begin + 1; k < end; k++) {
         if (arr[k] < arr[min_index]) {
             min_index = k;
@@ -19,19 +19,19 @@ int find_min_index(vector<int> arr, int begin, int end)
 void recursive_sort(vector<int> arr, int size, bool is_sorted, int index) {
     int min_index = 0;
 
-    // Выводим массив, когда index и size будут одинаковыми
+    // Р’С‹РІРѕРґРёРј РјР°СЃСЃРёРІ, РєРѕРіРґР° index Рё size Р±СѓРґСѓС‚ РѕРґРёРЅР°РєРѕРІС‹РјРё
     if (index == size) {
         is_sorted = true;
         output(arr, size, is_sorted);
         return;
     }
 
-    // Вызов функции min_index для получения минимального индекса
+    // Р’С‹Р·РѕРІ С„СѓРЅРєС†РёРё min_index РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ РёРЅРґРµРєСЃР°
     min_index = find_min_index(arr, index, size);
 
-    // Меняем местами, когда индекс и минимальный индекс не совпадают
+    // РњРµРЅСЏРµРј РјРµСЃС‚Р°РјРё, РєРѕРіРґР° РёРЅРґРµРєСЃ Рё РјРёРЅРёРјР°Р»СЊРЅС‹Р№ РёРЅРґРµРєСЃ РЅРµ СЃРѕРІРїР°РґР°СЋС‚
     if (min_index != index)     swap(arr[min_index], arr[index]);
 
-    // Рекурсивный вызов функции сортировки
+    // Р РµРєСѓСЂСЃРёРІРЅС‹Р№ РІС‹Р·РѕРІ С„СѓРЅРєС†РёРё СЃРѕСЂС‚РёСЂРѕРІРєРё
     recursive_sort(arr, size, is_sorted, index + 1);
 }

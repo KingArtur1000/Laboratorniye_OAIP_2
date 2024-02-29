@@ -1,4 +1,4 @@
-#include "functions_for_sort.h"
+п»ї#include "functions_for_sort.h"
 
 
 void shaker_sort(vector<int> arr, int size, bool is_sorted) {
@@ -9,7 +9,7 @@ void shaker_sort(vector<int> arr, int size, bool is_sorted) {
     while (is_swapped) {
         is_swapped = false;
 
-        // Проход слева направо
+        // РџСЂРѕС…РѕРґ СЃР»РµРІР° РЅР°РїСЂР°РІРѕ
         for (int i = start; i < end; ++i) {
             if (arr.at(i) > arr.at(i + 1)) {
                 swap(arr.at(i), arr.at(i + 1));
@@ -17,15 +17,15 @@ void shaker_sort(vector<int> arr, int size, bool is_sorted) {
             }
         }
 
-        if (!is_swapped) // Если не было перестановок, то массив уже отсортирован
+        if (!is_swapped) // Р•СЃР»Рё РЅРµ Р±С‹Р»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє, С‚Рѕ РјР°СЃСЃРёРІ СѓР¶Рµ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅ
             break;
 
         is_swapped = false;
 
-        // Уменьшаем правую границу
+        // РЈРјРµРЅСЊС€Р°РµРј РїСЂР°РІСѓСЋ РіСЂР°РЅРёС†Сѓ
         --end;
 
-        // Проход справа налево
+        // РџСЂРѕС…РѕРґ СЃРїСЂР°РІР° РЅР°Р»РµРІРѕ
         for (int i = end - 1; i >= start; --i) {
             if (arr.at(i) > arr.at(i + 1)) {
                 swap(arr.at(i), arr.at(i + 1));
@@ -33,7 +33,7 @@ void shaker_sort(vector<int> arr, int size, bool is_sorted) {
             }
         }
 
-        // Увеличиваем левую границу
+        // РЈРІРµР»РёС‡РёРІР°РµРј Р»РµРІСѓСЋ РіСЂР°РЅРёС†Сѓ
         ++start;
     }
 
