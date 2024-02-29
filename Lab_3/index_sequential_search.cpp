@@ -1,18 +1,19 @@
 ﻿#include "functions_for_search.h"
 
 
-void index_sequential_search(vector<int> arr, int SIZE, int target) {
-    sort(arr.begin(), arr.end());
-
-    vector<int> index_table;
+void index_sequential_search(vector<int> arr, int target) {
+    const int SIZE = arr.size();
     int operations = 0;
     int step = 0;
     int block_index = 0;
     int start_index = 0;
     int end_index = 0;
+    vector<int> index_table;
+
+    sort(arr.begin(), arr.end());
 
     //Выводим отсортированный массив (для наглядности)
-    output(arr, SIZE);
+    output(arr);
 
     //Запрашиваем шаг у пользователя:
     cout << "Введите шаг --> ";  cin >> step;   cout << '\n';

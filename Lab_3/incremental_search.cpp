@@ -1,21 +1,24 @@
-#include "functions_for_search.h"
+ï»¿#include "functions_for_search.h"
 
 
-void incremental_search(vector <int> arr, int SIZE, int target) {
+void incremental_search(vector <int> arr, int target) {
+	const int SIZE = arr.size();
 	bool is_element_find = false;
 	int operations = 0;
+
+	output(arr);
 
 	for (int i = 0; i < SIZE; i++) {
 		operations++;
 
 		if (arr.at(i) == target) {
-			cout << "Ýëåìåíò íàéäåí! Èíäåêñ ýëåìåíòà = " << i << '\n' << '\n';
-			cout << "Êîë-âî ñðàâíåíèé: " << operations << '\n' << '\n';
+			cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð½Ð°Ð¹Ð´ÐµÐ½! Ð˜Ð½Ð´ÐµÐºÑ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð° = " << i << '\n' << '\n';
+			cout << "ÐšÐ¾Ð»-Ð²Ð¾ ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ð¹: " << operations << '\n' << '\n';
 			is_element_find = true;
 		}
 	}
 
 	if (!is_element_find) {
-		cout << target << " - íå íàéäåí â ìàññèâå!";
+		cout << target << " - Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½ Ð² Ð¼Ð°ÑÑÐ¸Ð²Ðµ!";
 	}
 }

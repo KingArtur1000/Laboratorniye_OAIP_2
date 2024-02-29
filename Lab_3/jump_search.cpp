@@ -1,22 +1,23 @@
-#include "functions_for_search.h"
+ï»¿#include "functions_for_search.h"
 
 
-void jump_search(vector <int> arr, int SIZE, int target) {
+void jump_search(vector <int> arr, int target) {
+    const int SIZE = arr.size();
     int step = sqrt(SIZE);
     int last_step = 0;
     int operations = 0;
 
     sort(arr.begin(), arr.end());
 
-    output(arr, SIZE);
+    output(arr);
 
     while (arr.at(min(step, SIZE)) < target) {
         operations++;
         last_step = step;
         step += sqrt(SIZE);
         if (last_step >= SIZE) {
-            cout << "Ýëåìåíò " << target << " íå íàéäåí" << '\n';
-            cout << "Êîë-âî ñðàâíåíèé: " << operations << '\n';
+            cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ " << target << " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½" << '\n';
+            cout << "ÐšÐ¾Ð»-Ð²Ð¾ ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ð¹: " << operations << '\n';
         }
     }
 
@@ -24,13 +25,13 @@ void jump_search(vector <int> arr, int SIZE, int target) {
         operations++;
         last_step++;
         if (last_step == min(step, SIZE)) {
-            cout << "Ýëåìåíò " << target << " íå íàéäåí" << '\n';
-            cout << "Êîë-âî ñðàâíåíèé: " << operations << '\n';
+            cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ " << target << " Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½" << '\n';
+            cout << "ÐšÐ¾Ð»-Ð²Ð¾ ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ð¹: " << operations << '\n';
         }
     }
 
     if (arr.at(last_step) == target) {
-        cout << "Íàéäåí ýëåìåíò " << target << " ïî èíäåêñó " << last_step << '\n';
-        cout << "Êîë-âî ñðàâíåíèé: " << operations << '\n' << '\n';
+        cout << "ÐÐ°Ð¹Ð´ÐµÐ½ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ " << target << " Ð¿Ð¾ Ð¸Ð½Ð´ÐµÐºÑÑƒ " << last_step << '\n';
+        cout << "ÐšÐ¾Ð»-Ð²Ð¾ ÑÑ€Ð°Ð²Ð½ÐµÐ½Ð¸Ð¹: " << operations << '\n' << '\n';
     }
 }

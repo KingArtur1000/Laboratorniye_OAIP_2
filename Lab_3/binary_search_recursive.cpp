@@ -1,7 +1,8 @@
-#include "functions_for_search.h"
+п»ї#include "functions_for_search.h"
 
 
-void binary_search_recursive(vector <int> arr, int SIZE, int target, const int &left, const int &right, int &operations, bool &flag_2){
+void binary_search_recursive(vector <int> arr, int target, const int &left, const int &right, int &operations, bool &flag_2){
+    const int SIZE = arr.size();
 
     sort(arr.begin(), arr.end());
 
@@ -15,13 +16,13 @@ void binary_search_recursive(vector <int> arr, int SIZE, int target, const int &
         operations++;
 
         if (arr.at(middle) == target) {
-            cout << "Элемент " << target << " найден под индексом " << middle << '\n';
-            cout << "Кол-во сравнений: " << operations << '\n';
+            cout << "Р­Р»РµРјРµРЅС‚ " << target << " РЅР°Р№РґРµРЅ РїРѕРґ РёРЅРґРµРєСЃРѕРј " << middle << '\n';
+            cout << "РљРѕР»-РІРѕ СЃСЂР°РІРЅРµРЅРёР№: " << operations << '\n';
         }
 
         if (arr.at(middle) < target)
-            return binary_search_recursive(arr, SIZE, target, middle + 1, right, operations, flag_2);
+            return binary_search_recursive(arr, target, middle + 1, right, operations, flag_2);
         else
-            return binary_search_recursive(arr, SIZE, target, left, middle - 1, operations, flag_2);
+            return binary_search_recursive(arr, target, left, middle - 1, operations, flag_2);
     }
 }

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <vector>
@@ -17,8 +17,8 @@ using std::max;
 
 
 void input_searched_value(int& target);
-void incremental_search(vector <int> arr, int SIZE, int target);
-void jump_search(vector <int> arr, int SIZE, int target);
-void index_sequential_search(vector <int> arr, int SIZE, int target);
-void binary_search(vector <int> arr, int SIZE, int target);
-void binary_search_recursive(vector <int> arr, int SIZE, int target, const int &left, const int &right, int& operations, bool& flag_2);
+void incremental_search(vector <int> arr, int target);
+void jump_search(vector <int> arr, int target);
+void index_sequential_search(vector <int> arr, int target);
+void binary_search(vector <int> arr, int target);
+void binary_search_recursive(vector <int> arr, int target, const int &left, const int &right, int& operations, bool& flag_2);

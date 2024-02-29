@@ -1,30 +1,31 @@
-#include "functions_for_search.h"
+Ôªø#include "functions_for_search.h"
 
 
-void binary_search(vector <int> arr, int SIZE, int target) {
+void binary_search(vector <int> arr, int target) {
     int left = 0;
     int right = arr.size() - 1;
     int middle = 0;
     int operations = 0;
     bool flag = false;
+    const int SIZE = arr.size();
 
 
     sort(arr.begin(), arr.end());
 
-    output(arr, SIZE);
+    output(arr);
 
     while ((left <= right) && (flag != true)) {
-        middle = (left + right) / 2;        // Ò˜ËÚ˚‚‡ÂÏ ÒÂÂ‰ËÌÌ˚È ËÌ‰ÂÍÒ ÓÚÂÁÍ‡
+        middle = (left + right) / 2;        // —Å—á–∏—Ç—ã–≤–∞–µ–º —Å–µ—Ä–µ–¥–∏–Ω–Ω—ã–π –∏–Ω–¥–µ–∫—Å –æ—Ç—Ä–µ–∑–∫–∞
         operations++;
 
-        if (arr[middle] == target) flag = true;         //ÔÓ‚ÂˇÂÏ ÍÎ˛˜ (ËÒÍÓÏÓÂ ÁÌ‡˜ÂÌËÂ) ÒÓ ÒÂÂ‰ËÌÌ˚Ï ˝ÎÂÏÂÌÚÓÏ
-        if (arr[middle] > target) right = middle - 1;       // ÔÓ‚ÂˇÂÏ, Í‡ÍÛ˛ ˜‡ÒÚ¸ ÌÛÊÌÓ ÓÚ·ÓÒËÚ¸
+        if (arr[middle] == target) flag = true;         //–ø—Ä–æ–≤–µ—Ä—è–µ–º –∫–ª—é—á (–∏—Å–∫–æ–º–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ) —Å–æ —Å–µ—Ä–µ–¥–∏–Ω–Ω—ã–º —ç–ª–µ–º–µ–Ω—Ç–æ–º
+        if (arr[middle] > target) right = middle - 1;       // –ø—Ä–æ–≤–µ—Ä—è–µ–º, –∫–∞–∫—É—é —á–∞—Å—Ç—å –Ω—É–∂–Ω–æ –æ—Ç–±—Ä–æ—Å–∏—Ç—å
         else left = middle + 1;
     }
 
     if (flag) {
-        cout << "Õ‡È‰ÂÌ ˝ÎÂÏÂÌÚ " << target << " ÔÓ‰ ËÌ‰ÂÍÒÓÏ " << middle << '\n';
-        cout << " ÓÎ-‚Ó Ò‡‚ÌÂÌËÈ: " << operations << '\n' << '\n';
+        cout << "–ù–∞–π–¥–µ–Ω —ç–ª–µ–º–µ–Ω—Ç " << target << " –ø–æ–¥ –∏–Ω–¥–µ–∫—Å–æ–º " << middle << '\n';
+        cout << "–ö–æ–ª-–≤–æ —Å—Ä–∞–≤–Ω–µ–Ω–∏–π: " << operations << '\n' << '\n';
     } 
-    else cout << "›ÎÂÏÂÌÚ " << target <<  " Õ≈ ·˚Î Ì‡È‰ÂÌ!\n\n";
+    else cout << "–≠–ª–µ–º–µ–Ω—Ç " << target <<  " –ù–ï –±—ã–ª –Ω–∞–π–¥–µ–Ω!\n\n";
 }

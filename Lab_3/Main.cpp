@@ -1,4 +1,4 @@
-#include "lab_3.h"	//Подключили собственный заголовочный файл
+п»ї#include "lab_3.h"	//РџРѕРґРєР»СЋС‡РёР»Рё СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р»
 
 
 int main() {
@@ -13,39 +13,39 @@ int main() {
 	int operations = 0;
 	bool flag = true;
 	bool flag_2 = true;
-	vector <int> arr;	//Да-да наконец-то используем vector :)
+	vector <int> arr;	//Р”Р°-РґР° РЅР°РєРѕРЅРµС†-С‚Рѕ РёСЃРїРѕР»СЊР·СѓРµРј vector :)
 
 
 	input_size_of_arr(arr, SIZE);
 	fill_arr(arr, SIZE);
-	output(arr, SIZE);
+	output(arr);
 	input_searched_value(target);
 
 	const int left = 0;
 	const int right = arr.size() - 1;
 
 	do {
-		cout << "\n\t*МЕНЮ ПРОГРАММЫ*\n";
-		cout << "1) Изменить значение для поиска\n";
-		cout << "2) Последовательный поиск\n";
-		cout << "3) Поиск прыжками\n";
-		cout << "4) Индексно-последовательный поиск\n";
-		cout << "5) Бинарный поиск (циклические операторы)\n";
-		cout << "6) Бинарный поиск (рекурсия)\n";
-		cout << "7) Вывод массива\n";
-		cout << "8) Завершение программы\n\n";
-		cout << "\tВыберите нужную функцию --> ";	 cin >> choice;		cout << '\n' << '\n';
+		cout << "\n\t*РњР•РќР® РџР РћР“Р РђРњРњР«*\n";
+		cout << "1) РР·РјРµРЅРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РїРѕРёСЃРєР°\n";
+		cout << "2) РџРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹Р№ РїРѕРёСЃРє\n";
+		cout << "3) РџРѕРёСЃРє РїСЂС‹Р¶РєР°РјРё\n";
+		cout << "4) РРЅРґРµРєСЃРЅРѕ-РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹Р№ РїРѕРёСЃРє\n";
+		cout << "5) Р‘РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє (С†РёРєР»РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С‚РѕСЂС‹)\n";
+		cout << "6) Р‘РёРЅР°СЂРЅС‹Р№ РїРѕРёСЃРє (СЂРµРєСѓСЂСЃРёСЏ)\n";
+		cout << "7) Р’С‹РІРѕРґ РјР°СЃСЃРёРІР°\n";
+		cout << "8) Р—Р°РІРµСЂС€РµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹\n\n";
+		cout << "\tР’С‹Р±РµСЂРёС‚Рµ РЅСѓР¶РЅСѓСЋ С„СѓРЅРєС†РёСЋ --> ";	 cin >> choice;		cout << '\n' << '\n';
 
 
 		switch (choice) {
-		case static_cast<int>(MENU::INPUT):						input_searched_value(target);													break;
-		case static_cast<int>(MENU::INCREMENTAL_SEARCH):		incremental_search(arr, SIZE, target);											break;
-		case static_cast<int>(MENU::JUMP_SEARCH):				jump_search(arr, SIZE, target);													break;
-		case static_cast<int>(MENU::INDEX_SEQUENTIAL_SEARCH):	index_sequential_search(arr, SIZE, target);										break;
-		case static_cast<int>(MENU::BINARY_SEARCH):				binary_search(arr, SIZE, target);												break;
-		case static_cast<int>(MENU::BINARY_SEARCH_RECURSIVE):	binary_search_recursive(arr, SIZE, target, left, right, operations, flag_2);	break;
-		case static_cast<int>(MENU::OUTPUT):					output(arr, SIZE);																break;
-		case static_cast<int>(MENU::EXIT):						exit(flag);		system("pause");												break;
+		case static_cast<int>(MENU::INPUT):						input_searched_value(target);											break;
+		case static_cast<int>(MENU::INCREMENTAL_SEARCH):		incremental_search(arr, target);										break;
+		case static_cast<int>(MENU::JUMP_SEARCH):				jump_search(arr, target);												break;
+		case static_cast<int>(MENU::INDEX_SEQUENTIAL_SEARCH):	index_sequential_search(arr, target);									break;
+		case static_cast<int>(MENU::BINARY_SEARCH):				binary_search(arr, target);												break;
+		case static_cast<int>(MENU::BINARY_SEARCH_RECURSIVE):	binary_search_recursive(arr, target, left, right, operations, flag_2);	break;
+		case static_cast<int>(MENU::OUTPUT):					output(arr);															break;
+		case static_cast<int>(MENU::EXIT):						exit(flag);		system("pause");										break;
 
 		default:	error();	break;
 		}

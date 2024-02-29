@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 enum class MENU {
-	VOID = NULL,
+	VOID,
 	INPUT,
 	INCREMENTAL_SEARCH,
 	JUMP_SEARCH,
