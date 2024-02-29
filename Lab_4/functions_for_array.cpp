@@ -20,8 +20,9 @@ void fill_arr(vector <int>& arr, int size) {
 }
 
 
-void output(vector <int> arr, int size) {
-    cout << "\tВаш массив :\n";
+void output(vector <int> arr, int size, bool is_sorted) {
+    if (is_sorted)      cout << "\tВаш отcортированный массив:\n";
+    else                cout << "\tВаш массив :\n";
 
     /*Красивый вывод массива (квадратом)*/
     cout << "[ ";
