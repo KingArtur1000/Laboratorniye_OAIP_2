@@ -24,5 +24,5 @@ void inserts_sort(vector<int> arr, int size, bool is_sorted);
 void selection_sort(vector<int> arr, int size, bool is_sorted);
 void shell_sort(vector<int> arr, int size, bool is_sorted);
 void recursive_sort(vector<int> arr, int size, bool is_sorted, int index);
-void hoara_sort(vector<int> arr, int size, bool is_sorted);
+void hoara_sort(vector<int> arr, int size, bool is_sorted, int begin, int end);
 void merging_sort(vector<int> arr, int size, bool is_sorted);

@@ -9,6 +9,7 @@ int main() {
 
 	int choice = 0;
 	int index = 0;
+	int begin = 0;
 	int size = 0;	//Не хочется в каждей функции, где сортируем массив вызывать arr.size()... Лучше просто передавать как параметр
 	bool flag = true;
 	bool is_sorted = false;		//По умолчанию массив понятное дело не будет отсортированным
@@ -20,6 +21,9 @@ int main() {
 	output(arr, size, is_sorted);
 
 
+	int end = size - 1;		//Для некоторых сортировок
+
+
 	do {
 		cout << "\n\t*МЕНЮ ПРОГРАММЫ*\n";
 		cout << "1) Пузырьковая сортировка\n";
@@ -29,7 +33,7 @@ int main() {
 		cout << "5) Выборочная сортировка\n";
 		cout << "6) Cортировка оболочки\n";
 		cout << "7) Рекурсивная сортировка\n";
-		cout << "8) Сорт Хоара\n";
+		cout << "8) Сортировка Хоара\n";
 		cout << "9) Сортировка слиянием\n";
 		cout << "10) Вывод исходного массива\n";
 		cout << "11) Завершение программы\n\n";
@@ -44,7 +48,7 @@ int main() {
 		case static_cast<int>(MENU::SELECTION_SORT):	selection_sort(arr, size, is_sorted);				break;
 		case static_cast<int>(MENU::SHELL_SORT):		shell_sort(arr, size, is_sorted);					break;
 		case static_cast<int>(MENU::RECURSIVE_SORT):	recursive_sort(arr, size, is_sorted, index);		break;
-		case static_cast<int>(MENU::HOARA_SORT):		hoara_sort(arr, size, is_sorted);					break;
+		case static_cast<int>(MENU::HOARA_SORT):		hoara_sort(arr, size, is_sorted, begin, end);		break;
 		case static_cast<int>(MENU::MERGING_SORT):		merging_sort(arr, size, is_sorted);					break;
 		case static_cast<int>(MENU::OUTPUT):			output(arr, size, is_sorted);						break;
 		case static_cast<int>(MENU::EXIT):				exit(flag);		system("pause");					break;
