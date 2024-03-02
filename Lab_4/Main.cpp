@@ -8,10 +8,7 @@ int main() {
 
 
 	int choice = 0;
-	int index = 0;
-	int begin = 0;
-	int end = 0;
-	int size = 0;	//Не хочется в каждей функции, где сортируем массив вызывать arr.size()... Лучше просто передавать как параметр
+	int size = 0;
 	bool flag = true;
 	vector <int> arr_original;	//Да-да наконец-то используем vector :)
 	vector <int> arr_sorted;
@@ -22,9 +19,6 @@ int main() {
 	input_size_of_arr(size);
 	fill_arr(arr_original, arr_sorted, size);
 	output(arr_original, arr_sorted, conditions);
-
-
-	end = size - 1;		//Для некоторых сортировок
 
 
 	do {
@@ -53,7 +47,7 @@ int main() {
 		case static_cast<int>(MENU::RECURSIVE_SORT):	recursive_sort_combo(arr_original, arr_sorted, conditions, actions);	break;
 		case static_cast<int>(MENU::HOARA_SORT):		hoara_sort_combo(arr_original, arr_sorted, conditions, actions);		break;
 		case static_cast<int>(MENU::MERGING_SORT):		merging_sort(arr_original, arr_sorted, conditions, actions);			break;
-		case static_cast<int>(MENU::OUTPUT):			output_original(arr_original, arr_sorted, conditions);							break;
+		case static_cast<int>(MENU::OUTPUT):			output_original(arr_original, arr_sorted, conditions);					break;
 		case static_cast<int>(MENU::EXIT):				exit(flag);		system("pause");										break;
 
 		default:	error();	break;
