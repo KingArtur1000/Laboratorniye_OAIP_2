@@ -158,6 +158,7 @@
     <ClInclude Include="functions_for_array.h" />
     <ClInclude Include="functions_for_sort.h" />
     <ClInclude Include="lab_4.h" />
+    <ClInclude Include="structs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

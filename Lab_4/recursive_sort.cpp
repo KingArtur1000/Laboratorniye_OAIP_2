@@ -16,22 +16,31 @@ int find_min_index(vector<int> arr, int begin, int end)
 }
 
 
-void recursive_sort(vector<int> arr, int size, bool is_sorted, int index) {
+void recursive_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions, int index) {
     int min_index = 0;
+  
 
     // Выводим массив, когда index и size будут одинаковыми
-    if (index == size) {
-        is_sorted = true;
-        output(arr, size, is_sorted);
+    if (index == arr_sorted.size()) {
         return;
     }
 
     // Вызов функции min_index для получения минимального индекса
-    min_index = find_min_index(arr, index, size);
+    min_index = find_min_index(arr_sorted, index, arr_sorted.size());
 
     // Меняем местами, когда индекс и минимальный индекс не совпадают
-    if (min_index != index)     swap(arr[min_index], arr[index]);
+    if (min_index != index)     swap(arr_sorted[min_index], arr_sorted[index]);
 
     // Рекурсивный вызов функции сортировки
-    recursive_sort(arr, size, is_sorted, index + 1);
+    recursive_sort(arr_original, arr_sorted, conditions, actions, index + 1);
+}
+
+
+void recursive_sort_combo(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    reset(arr_original, arr_sorted, conditions);
+
+    recursive_sort(arr_original, arr_sorted, conditions, actions, 0);
+    conditions.is_sorted = true;
+    conditions.is_reseted = false;
+    output(arr_original, arr_sorted, conditions);
 }

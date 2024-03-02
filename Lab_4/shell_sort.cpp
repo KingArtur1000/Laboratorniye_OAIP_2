@@ -1,16 +1,18 @@
 ﻿#include "functions_for_sort.h"
 
 
-void shell_sort(vector<int> arr, int size, bool is_sorted) {
-    for (int step = size / 2; step > 0; step /= 2) {
-        for (int i = step; i < size; i++) {
-            for (int j = i; (j >= step) && (arr.at(j - step) > arr.at(j)); j -= step) {
-                swap(arr[j], arr[j - step]);
+void shell_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    conditions.is_reseted = false;
+    reset(arr_original, arr_sorted, conditions);
+    
+    for (int step = arr_sorted.size() / 2; step > 0; step /= 2) {
+        for (int i = step; i < arr_sorted.size(); i++) {
+            for (int j = i; (j >= step) && (arr_sorted.at(j - step) > arr_sorted.at(j)); j -= step) {
+                swap(arr_sorted[j], arr_sorted[j - step]);
             }
         }
     }
 
-    is_sorted = true;
-
-    output(arr, size, is_sorted);
+    conditions.is_sorted = true;
+    output(arr_original, arr_sorted, conditions);
 }

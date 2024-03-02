@@ -10,18 +10,21 @@ int main() {
 	int choice = 0;
 	int index = 0;
 	int begin = 0;
+	int end = 0;
 	int size = 0;	//Не хочется в каждей функции, где сортируем массив вызывать arr.size()... Лучше просто передавать как параметр
 	bool flag = true;
-	bool is_sorted = false;		//По умолчанию массив понятное дело не будет отсортированным
-	vector <int> arr;	//Да-да наконец-то используем vector :)
+	vector <int> arr_original;	//Да-да наконец-то используем vector :)
+	vector <int> arr_sorted;
+	Conditions conditions;
+	Actions actions;
 
 
-	input_size_of_arr(arr, size);
-	fill_arr(arr, size);
-	output(arr, size, is_sorted);
+	input_size_of_arr(size);
+	fill_arr(arr_original, arr_sorted, size);
+	output(arr_original, arr_sorted, conditions);
 
 
-	int end = size - 1;		//Для некоторых сортировок
+	end = size - 1;		//Для некоторых сортировок
 
 
 	do {
@@ -41,17 +44,17 @@ int main() {
 
 
 		switch (choice) {
-		case static_cast<int>(MENU::BUBBLE_SORT):		bubble_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::SHAKER_SORT):		shaker_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::DWARVES_SORT):		dwarves_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::INSERTS_SORT):		inserts_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::SELECTION_SORT):	selection_sort(arr, size, is_sorted);				break;
-		case static_cast<int>(MENU::SHELL_SORT):		shell_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::RECURSIVE_SORT):	recursive_sort(arr, size, is_sorted, index);		break;
-		case static_cast<int>(MENU::HOARA_SORT):		hoara_sort(arr, size, is_sorted, begin, end);		break;
-		case static_cast<int>(MENU::MERGING_SORT):		merging_sort(arr, size, is_sorted);					break;
-		case static_cast<int>(MENU::OUTPUT):			output(arr, size, is_sorted);						break;
-		case static_cast<int>(MENU::EXIT):				exit(flag);		system("pause");					break;
+		case static_cast<int>(MENU::BUBBLE_SORT):		bubble_sort(arr_original, arr_sorted, conditions, actions);				break;
+		case static_cast<int>(MENU::SHAKER_SORT):		shaker_sort(arr_original, arr_sorted, conditions, actions);				break;
+		case static_cast<int>(MENU::DWARVES_SORT):		dwarves_sort(arr_original, arr_sorted, conditions, actions);			break;
+		case static_cast<int>(MENU::INSERTS_SORT):		inserts_sort(arr_original, arr_sorted, conditions, actions);			break;
+		case static_cast<int>(MENU::SELECTION_SORT):	selection_sort(arr_original, arr_sorted, conditions, actions);			break;
+		case static_cast<int>(MENU::SHELL_SORT):		shell_sort(arr_original, arr_sorted, conditions, actions);				break;
+		case static_cast<int>(MENU::RECURSIVE_SORT):	recursive_sort_combo(arr_original, arr_sorted, conditions, actions);	break;
+		case static_cast<int>(MENU::HOARA_SORT):		hoara_sort_combo(arr_original, arr_sorted, conditions, actions);		break;
+		case static_cast<int>(MENU::MERGING_SORT):		merging_sort(arr_original, arr_sorted, conditions, actions);			break;
+		case static_cast<int>(MENU::OUTPUT):			output_original(arr_original, arr_sorted, conditions);							break;
+		case static_cast<int>(MENU::EXIT):				exit(flag);		system("pause");										break;
 
 		default:	error();	break;
 		}

@@ -1,45 +1,47 @@
 ﻿#include "functions_for_sort.h"
 
-/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-void hoara_sort(vector<int> arr, int size, bool is_sorted, int begin, int end) {
-    int pivot = arr[begin];
-    int l_hold = begin;
-    int r_hold = end;
 
-    cout << begin << " " << end << '\n';
+void hoara_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions, int begin, int end) {
+    int i = begin;
+    int j = end;
+    int pivot = arr_sorted.at((begin + end) / 2); // Выбор опорного элемента посередине вектора
 
-    if (begin >= end) {
-        is_sorted = true;
-        output(arr, size, is_sorted);
-        return; // Базовый случай: если подмассив состоит из одного элемента или пуст
+    do {
+        // Поиск элемента в левой части, который больше или равен опорному
+        while (arr_sorted.at(i) < pivot)
+            i++;
+
+        // Поиск элемента в правой части, который меньше или равен опорному
+        while (arr_sorted.at(j) > pivot)
+            j--;
+
+        // Производим обмен элементов
+        if (i <= j) {
+            if (i < j)
+                swap(arr_sorted.at(i), arr_sorted.at(j));
+            i++;
+            j--;
+        }
+    } while (i <= j);
+
+    // Рекурсивный вызов для сортировки правой части вектора
+    if (i < end) {
+        hoara_sort(arr_original, arr_sorted, conditions, actions, i, end);
     }
 
-    while (begin < end) {
-        while ((arr[end] >= pivot) && (begin < end))
-            end--;
-
-        if (begin != end) {
-            arr[begin] = arr[end];
-            begin++;
-        }
-
-        while ((arr[begin] <= pivot) && (begin < end))
-            begin++;
-
-        if (begin != end) {
-            arr[end] = arr[begin];
-            end--;
-        }
+    // Рекурсивный вызов для сортировки левой части вектора
+    if (begin < j) {
+        hoara_sort(arr_original, arr_sorted, conditions, actions, begin, j);
     }
+}
 
-    arr[begin] = pivot;
-    pivot = begin;
-    begin = l_hold;
-    end = r_hold;
 
-    if (begin < pivot)
-        hoara_sort(arr, size, is_sorted, begin, pivot - 1);
+void hoara_sort_combo(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    conditions.is_sorted = true;
+    conditions.is_reseted = false;
+    reset(arr_original, arr_sorted, conditions);
 
-    if (end > pivot)
-        hoara_sort(arr, size, is_sorted, pivot + 1, end);
+    hoara_sort(arr_original, arr_sorted, conditions, actions, 0, (arr_sorted.size() - 1));
+
+    output(arr_original, arr_sorted, conditions);
 }

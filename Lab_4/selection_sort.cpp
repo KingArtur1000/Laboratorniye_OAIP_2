@@ -1,20 +1,23 @@
 ﻿#include "functions_for_sort.h"
 
 
-void selection_sort(vector<int> arr, int size, bool is_sorted) {
-    for (int i = 0; i < size - 1; i++) {
+void selection_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    
+    conditions.is_reseted = false;
+    reset(arr_original, arr_sorted, conditions);
+    
+    for (int i = 0; i < arr_sorted.size() - 1; i++) {
         int min_index = i;
 
-        for (int j = i + 1; j < size; j++) {
-            if (arr.at(j) < arr.at(min_index)) {
+        for (int j = i + 1; j < arr_sorted.size(); j++) {
+            if (arr_sorted.at(j) < arr_sorted.at(min_index)) {
                 min_index = j;
             }
         }
 
-        swap(arr.at(i), arr.at(min_index));
+        swap(arr_sorted.at(i), arr_sorted.at(min_index));
     }
 
-    is_sorted = true;
-
-    output(arr, size, is_sorted);
+    conditions.is_sorted = true;
+    output(arr_original, arr_sorted, conditions);
 }
