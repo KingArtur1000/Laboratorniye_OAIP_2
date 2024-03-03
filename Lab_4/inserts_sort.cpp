@@ -2,10 +2,12 @@
 
 
 void inserts_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    steady_clock::time_point start_time = start_timer();
+
     int key = 0;
 
     conditions.is_reseted = false;
-    reset(arr_original, arr_sorted, conditions);
+    reset(arr_original, arr_sorted, conditions, actions);
     
     for (int i = 1; i < arr_sorted.size(); i++)
     {
@@ -16,10 +18,17 @@ void inserts_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions
         {
             arr_sorted[j + 1] = arr_sorted[j];
             j--;
+
+            actions.operations++;
+            actions.swaps++;
         }
         arr_sorted[j + 1] = key;
     }
 
     conditions.is_sorted = true;
-    output(arr_original, arr_sorted, conditions);
+
+    steady_clock::time_point end_time = end_timer();
+    actions.time = duration_time(start_time, end_time);
+
+    output(arr_original, arr_sorted, conditions, actions);
 }

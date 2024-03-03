@@ -8,17 +8,23 @@ void hoara_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& 
 
     do {
         // Поиск элемента в левой части, который больше или равен опорному
-        while (arr_sorted.at(i) < pivot)
+        while (arr_sorted.at(i) < pivot) {
             i++;
+            actions.operations++;
+        }   
 
         // Поиск элемента в правой части, который меньше или равен опорному
-        while (arr_sorted.at(j) > pivot)
+        while (arr_sorted.at(j) > pivot) {
             j--;
+            actions.operations++;
+        }   
 
         // Производим обмен элементов
         if (i <= j) {
-            if (i < j)
+            if (i < j) {
                 swap(arr_sorted.at(i), arr_sorted.at(j));
+                actions.swaps++;
+            }    
             i++;
             j--;
         }
@@ -37,11 +43,13 @@ void hoara_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& 
 
 
 void hoara_sort_combo(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
-    conditions.is_sorted = true;
-    conditions.is_reseted = false;
-    reset(arr_original, arr_sorted, conditions);
+    reset(arr_original, arr_sorted, conditions, actions);
 
+    steady_clock::time_point start_time = start_timer();
     hoara_sort(arr_original, arr_sorted, conditions, actions, 0, (arr_sorted.size() - 1));
+    steady_clock::time_point end_time = end_timer();
 
-    output(arr_original, arr_sorted, conditions);
+    actions.time = duration_time(start_time, end_time);
+
+    output(arr_original, arr_sorted, conditions, actions);
 }

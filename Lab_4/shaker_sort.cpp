@@ -3,12 +3,13 @@
 
 
 void shaker_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    steady_clock::time_point start_time = start_timer();
+
     bool is_swapped = true;
     int start = 0;
     int end = arr_sorted.size() - 1;
 
-    conditions.is_reseted = false;
-    reset(arr_original, arr_sorted, conditions);
+    reset(arr_original, arr_sorted, conditions, actions);
 
     while (is_swapped) {
         is_swapped = false;
@@ -18,7 +19,10 @@ void shaker_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions&
             if (arr_sorted.at(i) > arr_sorted.at(i + 1)) {
                 swap(arr_sorted.at(i), arr_sorted.at(i + 1));
                 is_swapped = true;
+                actions.operations++;
+               
             }
+            actions.operations++;
         }
 
         if (!is_swapped) // Если не было перестановок, то массив уже отсортирован
@@ -34,7 +38,9 @@ void shaker_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions&
             if (arr_sorted.at(i) > arr_sorted.at(i + 1)) {
                 swap(arr_sorted.at(i), arr_sorted.at(i + 1));
                 is_swapped = true;
+                actions.swaps++;
             }
+            actions.operations++;
         }
 
         // Увеличиваем левую границу
@@ -42,5 +48,9 @@ void shaker_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions&
     }
 
     conditions.is_sorted = true;
-    output(arr_original, arr_sorted, conditions);
+
+    steady_clock::time_point end_time = end_timer();
+    actions.time = duration_time(start_time, end_time);
+
+    output(arr_original, arr_sorted, conditions, actions);
 }

@@ -2,9 +2,9 @@
 
 
 void selection_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
-    
-    conditions.is_reseted = false;
-    reset(arr_original, arr_sorted, conditions);
+    steady_clock::time_point start_time = start_timer();
+
+    reset(arr_original, arr_sorted, conditions, actions);
     
     for (int i = 0; i < arr_sorted.size() - 1; i++) {
         int min_index = i;
@@ -12,12 +12,18 @@ void selection_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditio
         for (int j = i + 1; j < arr_sorted.size(); j++) {
             if (arr_sorted.at(j) < arr_sorted.at(min_index)) {
                 min_index = j;
+                actions.operations++;
             }
         }
 
         swap(arr_sorted.at(i), arr_sorted.at(min_index));
+        actions.swaps++;
     }
 
     conditions.is_sorted = true;
-    output(arr_original, arr_sorted, conditions);
+
+    steady_clock::time_point end_time = end_timer();
+    actions.time = duration_time(start_time, end_time);
+
+    output(arr_original, arr_sorted, conditions, actions);
 }

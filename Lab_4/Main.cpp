@@ -18,7 +18,7 @@ int main() {
 
 	input_size_of_arr(size);
 	fill_arr(arr_original, arr_sorted, size);
-	output(arr_original, arr_sorted, conditions);
+	output_original(arr_original, arr_sorted, conditions);
 
 
 	do {

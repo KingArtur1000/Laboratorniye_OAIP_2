@@ -22,7 +22,7 @@ void fill_arr(vector <int>& arr_original, vector <int>& arr_sort, int size) {
 }
 
 
-void output(vector <int>& arr_original, vector <int>& arr_sorted, Conditions& conditions) {
+void output(vector <int>& arr_original, vector <int>& arr_sorted, Conditions& conditions, Actions& actions) {
 
     if (conditions.is_sorted) {
         cout << "\tВаш отcортированный массив:\n";
@@ -37,7 +37,11 @@ void output(vector <int>& arr_original, vector <int>& arr_sorted, Conditions& co
                 cout << arr_sorted.at(i) << "\t";
             }
         }
-        cout << arr_sorted.at(arr_sorted.size() - 1) << " ]\n\n";
+        cout << arr_sorted.at(arr_sorted.size() - 1) << " ]\n";
+
+        cout << "\tКол-во сравнений = " << actions.operations << '\n';
+        cout << "\tКол-во перестановок = " << actions.swaps << '\n';
+        cout << "\tВремя работы = " << actions.time << " микросекунд(а/ы)" << '\n' << '\n';
     }      
     else {
         cout << "\tВаш исходный массив :\n";
