@@ -1,4 +1,4 @@
-#include "functions_for_files.h"
+ï»¿#include "functions_for_files.h"
 
 
 void saving(Parents *parents, const int SIZE) {
@@ -6,50 +6,50 @@ void saving(Parents *parents, const int SIZE) {
 	bool is_struct_empty = false;
 
 	if (file.is_open()) {
-		file << "\t\tÌàññèâ ñòðóêòóð:\n";
+		file << "\t\tÐœÐ°ÑÑÐ¸Ð² ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€:\n";
 
 		for (int i = 0; i < SIZE; i++) {
 			int numb = i + 1;
 
-			if ((parents[numb - 1].dad.age != 0) && (parents[numb - 1].dad.sex == 'Ì')) {
-				file << "Âîçðàñò ïàïû: " << parents[i].dad.age << '\n';
-				file << "ÔÈÎ ïàïû: " << parents[i].dad.name << '\n';
-				file << "Ïîë: " << parents[i].dad.sex << '\n' << '\n';
+			if ((parents[numb - 1].dad.age != 0) && (parents[numb - 1].dad.sex == 'Ðœ')) {
+				file << "Ð’Ð¾Ð·Ñ€Ð°ÑÑ‚ Ð¿Ð°Ð¿Ñ‹: " << parents[i].dad.age << '\n';
+				file << "Ð¤Ð˜Ðž Ð¿Ð°Ð¿Ñ‹: " << parents[i].dad.name << '\n';
+				file << "ÐŸÐ¾Ð»: " << parents[i].dad.sex << '\n' << '\n';
 			}
-			else if ((parents[numb - 1].mum.age != 0) && (parents[numb - 1].mum.sex == 'Æ')) {
-				file << "\tCòðóêòóðà ¹" << numb << ":\n";
-				file << "Âîçðàñò ìàìû: " << parents[i].mum.age << '\n';
-				file << "ÔÈÎ ìàìû: " << parents[i].mum.name << '\n';
-				file << "Ïîë: " << parents[i].mum.sex << '\n' << '\n';
+			else if ((parents[numb - 1].mum.age != 0) && (parents[numb - 1].mum.sex == 'Ð–')) {
+				file << "\tCÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ð° â„–" << numb << ":\n";
+				file << "Ð’Ð¾Ð·Ñ€Ð°ÑÑ‚ Ð¼Ð°Ð¼Ñ‹: " << parents[i].mum.age << '\n';
+				file << "Ð¤Ð˜Ðž Ð¼Ð°Ð¼Ñ‹: " << parents[i].mum.name << '\n';
+				file << "ÐŸÐ¾Ð»: " << parents[i].mum.sex << '\n' << '\n';
 			}
 			else {
 				is_struct_empty = true;
 			}
 		}
 
-		if (is_struct_empty)	file << "Íè îäíà ñòðóêòóðà íå çàïîëíåíà!\n\n";
+		if (is_struct_empty)	file << "ÐÐ¸ Ð¾Ð´Ð½Ð° ÑÑ‚Ñ€ÑƒÐºÑ‚ÑƒÑ€Ð° Ð½Ðµ Ð·Ð°Ð¿Ð¾Ð»Ð½ÐµÐ½Ð°!\n\n";
 
 		file.close();
 
-		cout << "Ôàéë óñïåøíî ñîõðàíåí!\n\n";
+		cout << "Ð¤Ð°Ð¹Ð» ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑÐ¾Ñ…Ñ€Ð°Ð½ÐµÐ½!\n\n";
 
 	}
-	else { cout << "Íå óäàëîñü îòêðûòü ôàéë äëÿ çàïèñè!\n";	 return; }
+	else { cout << "ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð» Ð´Ð»Ñ Ð·Ð°Ð¿Ð¸ÑÐ¸!\n";	 return; }
 }
 
 
 void reading(Parents *parents, const int SIZE) {
-	fstream file("Array-of-structures.txt", ios::in);	//Îòêðûëè ôàéë äëÿ ÷òåíèÿ
+	fstream file("Array-of-structures.txt", ios::in);	//ÐžÑ‚ÐºÑ€Ñ‹Ð»Ð¸ Ñ„Ð°Ð¹Ð» Ð´Ð»Ñ Ñ‡Ñ‚ÐµÐ½Ð¸Ñ
 	string str = "";
 
-	cout << "\t\tÑîäåðæèìîå äàííîãî ôàéëà:\n\n";
+	cout << "\t\tÐ¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ð´Ð°Ð½Ð½Ð¾Ð³Ð¾ Ñ„Ð°Ð¹Ð»Ð°:\n\n";
 	if (file.is_open()) {
-		while (file) {		//Ïîêà åñòü ÷òî-òî, ÷òî ìîæíî ïðî÷èòàòü â ôàéëå	
-			getline(file, str);		//Çàïèñûâàåì ïåðâóþ ñòðîêó â str è ñðàçó æå âûâîäèì å¸
+		while (file) {		//ÐŸÐ¾ÐºÐ° ÐµÑÑ‚ÑŒ Ñ‡Ñ‚Ð¾-Ñ‚Ð¾, Ñ‡Ñ‚Ð¾ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð² Ñ„Ð°Ð¹Ð»Ðµ	
+			getline(file, str);		//Ð—Ð°Ð¿Ð¸ÑÑ‹Ð²Ð°ÐµÐ¼ Ð¿ÐµÑ€Ð²ÑƒÑŽ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð² str Ð¸ ÑÑ€Ð°Ð·Ñƒ Ð¶Ðµ Ð²Ñ‹Ð²Ð¾Ð´Ð¸Ð¼ ÐµÑ‘
 			cout << str << '\n';
 		}
 
-		file.close();		/*Ñîõðàÿíåì èçìåíåíèÿ*/
+		file.close();		/*Ð¡Ð¾Ñ…Ñ€Ð°ÑÐ½ÐµÐ¼ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ*/
 	}
-	else { cout << "\tÍå óäàëîñü îòêðûòü ôàéë!\n";		return; }
+	else { cout << "\tÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚ÑŒ Ñ„Ð°Ð¹Ð»!\n";		return; }
 }

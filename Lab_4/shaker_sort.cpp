@@ -3,13 +3,13 @@
 
 
 void shaker_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    reset(arr_original, arr_sorted, conditions, actions);
+
     steady_clock::time_point start_time = start_timer();
 
     bool is_swapped = true;
     int start = 0;
     int end = arr_sorted.size() - 1;
-
-    reset(arr_original, arr_sorted, conditions, actions);
 
     while (is_swapped) {
         is_swapped = false;

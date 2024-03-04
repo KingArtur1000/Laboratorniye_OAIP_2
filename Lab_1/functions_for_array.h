@@ -1,4 +1,4 @@
-#pragma once	 /*директива для предотвращения многократного включения заголовочных файлов*/
+п»ї#pragma once	 /*РґРёСЂРµРєС‚РёРІР° РґР»СЏ РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РјРЅРѕРіРѕРєСЂР°С‚РЅРѕРіРѕ РІРєР»СЋС‡РµРЅРёСЏ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹С… С„Р°Р№Р»РѕРІ*/
 
 #include <iostream>
 #include <fstream>
@@ -8,7 +8,7 @@
 #include "functions_extra.h"
 
 
-using std::cin;		/*Компромисс :)*/
+using std::cin;		/*РљРѕРјРїСЂРѕРјРёСЃСЃ :)*/
 using std::cout;
 using std::fstream;
 using std::string;

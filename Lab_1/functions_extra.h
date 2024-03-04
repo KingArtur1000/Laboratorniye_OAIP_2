@@ -1,9 +1,9 @@
-#pragma once
+п»ї#pragma once
 
 #include <iostream>
 
 
-using std::cout;	/*Компромисс :)*/
+using std::cout;	/*РљРѕРјРїСЂРѕРјРёСЃСЃ :)*/
 
 
 void exit(bool &flag);

@@ -55,13 +55,13 @@ void merge(vector<int>& arr, int left, int middle, int right, Actions& actions) 
 
 // Функция сортировки слиянием
 void merging_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    reset(arr_original, arr_sorted, conditions, actions);
+
     steady_clock::time_point start_time = start_timer();
 
     int current_size = 0;
     int left_start = 0;
     int end_element = static_cast<int>(arr_sorted.size() - 1);  //Чтобы функция min не выпендривалась :) (а то unsigned int нельзя)
-
-    reset(arr_original, arr_sorted, conditions, actions);
 
     // Цикл по подмассивам заданного размера
     for (current_size = 1; current_size <= arr_sorted.size() - 1; current_size = 2 * current_size) {

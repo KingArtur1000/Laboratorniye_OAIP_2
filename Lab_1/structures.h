@@ -1,4 +1,4 @@
-#pragma once	 /*директива для предотвращения многократного включения заголовочных файлов*/
+п»ї#pragma once	 /*РґРёСЂРµРєС‚РёРІР° РґР»СЏ РїСЂРµРґРѕС‚РІСЂР°С‰РµРЅРёСЏ РјРЅРѕРіРѕРєСЂР°С‚РЅРѕРіРѕ РІРєР»СЋС‡РµРЅРёСЏ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹С… С„Р°Р№Р»РѕРІ*/
 
 
 const int LEN = 256;
@@ -6,19 +6,19 @@ const int LEN = 256;
 
 struct Mum {
 	int age = 0;
-	char sex = 'Ж';
+	char sex = 'Р–';
 	char name[LEN];
 };
 
 
 struct Dad {
 	int age = 0;
-	char sex = 'М';
+	char sex = 'Рњ';
 	char name[LEN];
 };
 
 
 union Parents {
-	Mum mum = {0, 'Ж', ""};
+	Mum mum = {0, 'Р–', ""};
 	Dad dad;
 };

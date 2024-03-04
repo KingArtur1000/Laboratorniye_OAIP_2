@@ -2,9 +2,9 @@
 
 
 void bubble_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions){
-    steady_clock::time_point start_time = start_timer();
-
     reset(arr_original, arr_sorted, conditions, actions);
+
+    steady_clock::time_point start_time = start_timer();
 
     for (int i = 0; i < arr_sorted.size() - 1; i++) {
         for (int j = 0; j < arr_sorted.size() - i - 1; j++) {

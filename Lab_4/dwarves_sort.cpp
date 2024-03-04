@@ -2,11 +2,11 @@
 
 
 void dwarves_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    reset(arr_original, arr_sorted, conditions, actions);
+
     steady_clock::time_point start_time = start_timer();
 
-    int index = 0;  
-
-    reset(arr_original, arr_sorted, conditions, actions);
+    int index = 0;
     
     while (index < arr_sorted.size()) {
         if (index == 0)

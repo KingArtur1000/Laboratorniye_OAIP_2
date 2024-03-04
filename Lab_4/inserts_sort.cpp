@@ -2,12 +2,11 @@
 
 
 void inserts_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions) {
+    reset(arr_original, arr_sorted, conditions, actions);
+
     steady_clock::time_point start_time = start_timer();
 
     int key = 0;
-
-    conditions.is_reseted = false;
-    reset(arr_original, arr_sorted, conditions, actions);
     
     for (int i = 1; i < arr_sorted.size(); i++)
     {
