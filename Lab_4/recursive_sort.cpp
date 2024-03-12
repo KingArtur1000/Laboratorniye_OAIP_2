@@ -1,40 +1,49 @@
 ﻿#include "functions_for_sort.h"
 
 
-int find_min_index(vector<int> arr, int begin, int end, Actions& actions) {
-    int min_index = begin; // Предполагаем, что минимальный элемент - это arr[i]
+void recursive_sort(vector<int>& arr_original, vector<int>& arr_sorted, int left, int right, Conditions& conditions, Actions& actions) {
+    int pivot; // разрешающий элемент
+    int index; // индекс разрешающего элемента
+    int l_hold = left; //левая граница
+    int r_hold = right; // правая граница
+    pivot = arr_sorted.at(left);
 
-    // Идем по оставшимся элементам и обновляем min_index, если находим элемент меньше текущего минимального
-    for (int k = begin + 1; k < end; k++) {
-        actions.operations++;
-        if (arr[k] < arr[min_index]) {
-            min_index = k;
+    // пока границы не сомкнутся
+    while (left < right) {
+        while ((arr_sorted.at(right) > pivot) && (left < right)) {
+            actions.operations++; // увеличиваем счетчик сравнений
+            right--; // сдвигаем правую границу пока элемент [right] больше [pivot]
+        }
+
+        // если границы не сомкнулись
+        if (left != right) {
+            arr_sorted.at(left) = arr_sorted.at(right); // перемещаем элемент [right] на место разрешающего
+            actions.swaps++; // увеличиваем счетчик перестановок
+            left++; // сдвигаем левую границу вправо
+        }
+
+        while ((arr_sorted.at(left) < pivot) && (left < right)) {
+            actions.operations++; // увеличиваем счетчик сравнений
+            left++; // сдвигаем левую границу пока элемент [left] меньше [pivot]
+        }
+
+        // если границы не сомкнулись
+        if (left != right) {
+            arr_sorted.at(right) = arr_sorted.at(left); // перемещаем элемент [left] на место [right]
+            actions.swaps++; // увеличиваем счетчик перестановок
+            right--; // сдвигаем правую границу влево
         }
     }
 
-    return min_index;
-}
+    arr_sorted.at(left) = pivot; // ставим разрешающий элемент на место
+    index = left;
+    left = l_hold;
+    right = r_hold;
 
-
-void recursive_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions, int index) {
-    int min_index = 0;
-
-    // Выводим массив, когда index и size будут одинаковыми
-    if (index == arr_sorted.size()) {
-        return;
-    }
-
-    // Вызов функции min_index для получения минимального индекса
-    min_index = find_min_index(arr_sorted, index, arr_sorted.size(), actions);
-
-    // Меняем местами, когда индекс и минимальный индекс не совпадают
-    if (min_index != index) {
-        swap(arr_sorted[min_index], arr_sorted[index]);
-        actions.swaps++;
-    }
-
-    // Рекурсивный вызов функции сортировки
-    recursive_sort(arr_original, arr_sorted, conditions, actions, index + 1);
+    if (left < index) // Рекурсивно вызываем сортировку для левой и правой части массива
+        recursive_sort(arr_original, arr_sorted, left, index - 1, conditions, actions);
+    if (right > index)
+        recursive_sort(arr_original, arr_sorted, index + 1, right, conditions, actions);
 }
 
 
@@ -42,7 +51,7 @@ void recursive_sort_combo(vector<int>& arr_original, vector<int>& arr_sorted, Co
     reset(arr_original, arr_sorted, conditions, actions);
 
     steady_clock::time_point start_time = start_timer();
-    recursive_sort(arr_original, arr_sorted, conditions, actions, 0);
+    recursive_sort(arr_original, arr_sorted, 0, arr_original.size() - 1, conditions, actions);
     steady_clock::time_point end_time = end_timer();
 
     actions.time = duration_time(start_time, end_time);

@@ -1,11 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
 
-#include "enum.h"
 #include "functions_for_array.h"
 #include "functions_extra.h"
 #include "structs.h"
@@ -31,3 +30,12 @@ void hoara_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& 
 void hoara_sort_combo(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions);
 void merge(vector<int>& arr, int left, int middle, int right, Actions& actions);
 void merging_sort(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions);
+
+void (*get_sort_function())(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions);
+
+typedef void (*sort_function_typedef)(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions);
+sort_function_typedef get_sort_function_typedef();
+
+
+using sort_function_using = void (*)(vector<int>& arr_original, vector<int>& arr_sorted, Conditions& conditions, Actions& actions);
+sort_function_using get_sort_function_using();

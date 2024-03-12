@@ -3,7 +3,7 @@
 
 void saving(Parents *parents, const int SIZE) {
 	fstream file("Array-of-structures.txt", ios::out);
-	bool is_struct_empty = false;
+	int empty_structs = 0;
 
 	if (file.is_open()) {
 		file << "\t\tМассив структур:\n";
@@ -23,11 +23,11 @@ void saving(Parents *parents, const int SIZE) {
 				file << "Пол: " << parents[i].mum.sex << '\n' << '\n';
 			}
 			else {
-				is_struct_empty = true;
+				empty_structs++;
 			}
 		}
 
-		if (is_struct_empty)	file << "Ни одна структура не заполнена!\n\n";
+		if (empty_structs == 5)	file << "Ни одна структура не заполнена!\n\n";
 
 		file.close();
 
