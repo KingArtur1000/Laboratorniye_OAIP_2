@@ -59,6 +59,7 @@ int main() {
 	}
 
 	sort_function_using sort_function_using = get_sort_function_using();
+	
 
 	// Вызываем функцию сортировки (using)
 	if (sort_function_using != nullptr) {
