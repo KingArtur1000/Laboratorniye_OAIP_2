@@ -26,7 +26,7 @@ int main() {
         case MAIN_MENU::DACK:     Dack_Menu(value, position);       break;
         case MAIN_MENU::QUEUE:    Queue_Menu(value, position);      break;
         case MAIN_MENU::STACK:    Stack_Menu(value, position);      break;
-        case MAIN_MENU::EXIT:     exit(flag, message);                       break;
+        case MAIN_MENU::EXIT:     exit(flag, message);              break;
         default:                  error();
         }
     } while (flag);
