@@ -5,6 +5,7 @@ void Dack_Menu(int value, int position) {   //Dack - двусторонняя очередь (прави
     Dack dack = {};
     int choice = 0;
     bool flag = true;
+    string message = "Возвращаемся в основное меню...";
 
 
     do {
@@ -21,7 +22,7 @@ void Dack_Menu(int value, int position) {   //Dack - двусторонняя очередь (прави
         cout << "\tПрочее:\n";
         cout << "\t7) Очистка списка\n";
         cout << "\t8) Вывод списка\n";
-        cout << "\t9) Выход\n";
+        cout << "\t9) Вернуться в основное меню\n";
         cout << "\n\tВаш выбор --> ";       cin >> choice;      cout << '\n';
 
 
@@ -34,7 +35,7 @@ void Dack_Menu(int value, int position) {   //Dack - двусторонняя очередь (прави
         case Dack_operation::ERASE:         dack.erase(position);           break;
         case Dack_operation::CLEAR_Dack:    dack.clear();                   break;
         case Dack_operation::PRINT_Dack:    dack.print();                   break;
-        case Dack_operation::EXIT:          exit(flag);                     break;
+        case Dack_operation::EXIT:          exit(flag, message);            break;
         default:                            error();
         }
     } while (flag);
@@ -45,6 +46,7 @@ void Queue_Menu(int value, int position) {  //Очередь
     Queue queue = {};
     int choice = 0;
     bool flag = true;
+    string message = "Возвращаемся в основное меню...";
 
 
     do {
@@ -54,7 +56,7 @@ void Queue_Menu(int value, int position) {  //Очередь
         cout << "\t2) Удаление значения из начала очереди\n";
         cout << "\t3) Удаление всех данных в очереди\n";
         cout << "\t4) Вывод всей очереди\n";
-        cout << "\t5) Выход\n";
+        cout << "\t5) Вернуться в основное меню\n";
         cout << "\n\tВаш выбор --> ";       cin >> choice;      cout << '\n';
 
 
@@ -63,7 +65,7 @@ void Queue_Menu(int value, int position) {  //Очередь
         case Queue_operation::REMOVE_VALUE: queue.dequeue();        break;
         case Queue_operation::CLEAR_QUEUE:  queue.clear();          break;
         case Queue_operation::PRINT_QUEUE:  queue.print();          break;
-        case Queue_operation::EXIT:         exit(flag);             break;
+        case Queue_operation::EXIT:         exit(flag, message);    break;
         default:                            error();
         }
     } while (flag);
@@ -74,6 +76,7 @@ void Stack_Menu(int value, int position) {  //Стек
     Stack stack = {};
     int choice = 0;
     bool flag = true;
+    string message = "Возвращаемся в основное меню...";
 
 
     do {
@@ -83,7 +86,7 @@ void Stack_Menu(int value, int position) {  //Стек
         cout << "\t2) Удаление значения из вершины\n";
         cout << "\t3) Удаление всех данных\n";
         cout << "\t4) Вывод всего стека\n";
-        cout << "\t5) Выход\n";
+        cout << "\t5) Вернуться в основное меню\n";
         cout << "\n\tВаш выбор --> ";   cin >> choice;      cout << '\n';
 
 
@@ -92,7 +95,7 @@ void Stack_Menu(int value, int position) {  //Стек
         case Stack_operation::REMOVE_VALUE: stack.pop();            break;
         case Stack_operation::CLEAR_STACK:  stack.clear();          break;
         case Stack_operation::PRINT_STACK:  stack.print();          break;
-        case Stack_operation::EXIT:         exit(flag);             break;
+        case Stack_operation::EXIT:         exit(flag, message);    break;
         default:                            error();
         }
     } while (flag);
