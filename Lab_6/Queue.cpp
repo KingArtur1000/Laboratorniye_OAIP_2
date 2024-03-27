@@ -62,7 +62,7 @@ void Queue::clear() {
 void Queue::print() {
     if (!isEmpty()) {
         if (isEmpty()) {
-            cout << "\n\tОчередь пуста!." << '\n';
+            cout << "\n\tОчередь пуста!" << '\n';
         }
         else {
             cout << "\n\tОчередь: ";

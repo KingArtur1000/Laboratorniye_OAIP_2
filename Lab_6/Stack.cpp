@@ -58,7 +58,7 @@ void Stack::print() {
         string cursor = " ---> ";
         string stdNullptr = "nullptr";
 
-        cout << "\nStack: ";
+        cout << "\nСтек: ";
 
         for (Stack_Node* buffer = top; buffer != nullptr; buffer = buffer->next) {
             cout << buffer->info << cursor;
