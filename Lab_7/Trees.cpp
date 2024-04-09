@@ -21,12 +21,12 @@ void BinaryTree_Menu() {   //avl_tree - двусторонняя очередь 
 
 
         switch (static_cast<BinaryTreeMenu>(choice)) {
-        case BinaryTreeMenu::ADDING:        binary_search_tree.input_value(value);    binary_search_tree.add(value);                binary_search_tree.showSymmetricalOrder();  break;
-        case BinaryTreeMenu::SEARCHING:     binary_search_tree.input_value(value);    binary_search_tree.showSymmetricalOrder();    binary_search_tree.search(value);           break;
-        case BinaryTreeMenu::REMOVING:      binary_search_tree.input_value(value);    binary_search_tree.erase(value);              binary_search_tree.showSymmetricalOrder();  break;
-        case BinaryTreeMenu::REMOVING_ALL:  binary_search_tree.remove_all();                                                        binary_search_tree.showSymmetricalOrder();  break;
-        case BinaryTreeMenu::PRINTING:      binary_search_tree.showSymmetricalOrder();                                                                                          break;
-        case BinaryTreeMenu::RETURNING:     exit(flag, message);                                                                                                                break;
+        case BinaryTreeMenu::ADDING:        binary_search_tree.input_value(value);      binary_search_tree.add(value);                binary_search_tree.showSymmetricalOrder();    break;
+        case BinaryTreeMenu::SEARCHING:     binary_search_tree.input_value(value);      binary_search_tree.showSymmetricalOrder();    binary_search_tree.search(value);             break;
+        case BinaryTreeMenu::REMOVING:      binary_search_tree.input_value(value);      binary_search_tree.erase(value);              binary_search_tree.showSymmetricalOrder();    break;
+        case BinaryTreeMenu::REMOVING_ALL:  binary_search_tree.remove_all();                                                          binary_search_tree.showSymmetricalOrder();    break;
+        case BinaryTreeMenu::PRINTING:      binary_search_tree.showSymmetricalOrder();                                                                                              break;
+        case BinaryTreeMenu::RETURNING:     exit(flag, message);                                                                                                                    break;
         default:                            error();
         }
     } while (flag);
@@ -57,4 +57,3 @@ void AVLTree_Menu() {   //avl_tree - двусторонняя очередь (п
         }
     } while (flag);
 }
-
