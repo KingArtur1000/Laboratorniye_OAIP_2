@@ -1,7 +1,7 @@
 ﻿#include "Trees.h"
 
 
-void BinaryTree_Menu() {   //binary_search_tree - двусторонняя очередь (правильнее было бы записать Dequeue) (Но binary_search_tree -пишется проще :) )
+void BinaryTree_Menu() {   //avl_tree - двусторонняя очередь (правильнее было бы записать Dequeue) (Но avl_tree -пишется проще :) )
     BinarySearchTree binary_search_tree = {};
     int choice = 0;
     int value = 0;
@@ -21,44 +21,40 @@ void BinaryTree_Menu() {   //binary_search_tree - двусторонняя оч�
 
 
         switch (static_cast<BinaryTreeMenu>(choice)) {
-        case BinaryTreeMenu::ADDING:        binary_search_tree.input_value(value);    binary_search_tree.add(value);   binary_search_tree.showSymmetricalOrder();       break;
-        case BinaryTreeMenu::SEARCHING:     binary_search_tree.input_value(value);    binary_search_tree.search(value);       break;
-        case BinaryTreeMenu::REMOVING:      binary_search_tree.input_value(value);    binary_search_tree.erase(value);  binary_search_tree.showSymmetricalOrder();   break;
-        case BinaryTreeMenu::REMOVING_ALL:  binary_search_tree.remove_all();                break;
-        case BinaryTreeMenu::PRINTING:      binary_search_tree.showSymmetricalOrder();                 break;
-        case BinaryTreeMenu::RETURNING:     exit(flag, message);            break;
+        case BinaryTreeMenu::ADDING:        binary_search_tree.input_value(value);    binary_search_tree.add(value);                binary_search_tree.showSymmetricalOrder();  break;
+        case BinaryTreeMenu::SEARCHING:     binary_search_tree.input_value(value);    binary_search_tree.showSymmetricalOrder();    binary_search_tree.search(value);           break;
+        case BinaryTreeMenu::REMOVING:      binary_search_tree.input_value(value);    binary_search_tree.erase(value);              binary_search_tree.showSymmetricalOrder();  break;
+        case BinaryTreeMenu::REMOVING_ALL:  binary_search_tree.remove_all();                                                        binary_search_tree.showSymmetricalOrder();  break;
+        case BinaryTreeMenu::PRINTING:      binary_search_tree.showSymmetricalOrder();                                                                                          break;
+        case BinaryTreeMenu::RETURNING:     exit(flag, message);                                                                                                                break;
         default:                            error();
         }
     } while (flag);
 }
 
 
-//void AVLTree_Menu(int value, int position) {  //Очередь
-//    Queue queue = {};
-//    int choice = 0;
-//    bool flag = true;
-//    string message = "Возвращаемся в основное меню...";
-//
-//
-//    do {
-//        cout << "\n\t\t**** МЕНЮ ВЗАИМОДЕЙСТВИЯ С -ОЧЕРЕДЬЮ- ****\n";
-//        cout << "------------------------------------------------------\n";
-//        cout << "1) Добавление значения в конец очереди\n";
-//        cout << "2) Удаление значения из начала очереди\n";
-//        cout << "3) Удаление всех данных в очереди\n";
-//        cout << "4) Вывод всей очереди\n";
-//        cout << "5) Вернуться в основное меню\n";
-//        cout << "\tВаш выбор --> ";       cin >> choice;      cout << '\n';
-//
-//
-//        switch (static_cast<Queue_operation>(choice)) {
-//        case Queue_operation::ADD_VALUE:    queue.enqueue(value);   break;
-//        case Queue_operation::REMOVE_VALUE: queue.dequeue();        break;
-//        case Queue_operation::CLEAR_QUEUE:  queue.clear();          break;
-//        case Queue_operation::PRINT_QUEUE:  queue.print();          break;
-//        case Queue_operation::EXIT:         exit(flag, message);    break;
-//        default:                            error();
-//        }
-//    } while (flag);
-//}
+void AVLTree_Menu() {   //avl_tree - двусторонняя очередь (правильнее было бы записать Dequeue) (Но avl_tree -пишется проще :) )
+    AVLTree avl_tree = {};
+    int choice = 0;
+    int value = 0;
+    bool flag = true;
+    string message = "Возвращаемся в основное меню...";
+
+
+    do {
+        cout << "\n\t\t**** AVL-дерево ****\n";
+        cout << "1) Добавление узлов по умолчанию (согласно варианту)\n";
+        cout << "2) Вывод всего дерева\n";
+        cout << "3) Вернуться\n";
+        cout << "\tВаш выбор --> ";       cin >> choice;      cout << '\n';
+
+
+        switch (static_cast<AVLTreeMenu>(choice)) {
+        case AVLTreeMenu::ADDING:        avl_tree.insert();                  break;
+        case AVLTreeMenu::PRINTING:      avl_tree.showSymmetricalOrder();    break;
+        case AVLTreeMenu::RETURNING:     exit(flag, message);                break;
+        default:                         error();
+        }
+    } while (flag);
+}
 

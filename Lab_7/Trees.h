@@ -12,4 +12,4 @@ using std::cout;
 
 
 void BinaryTree_Menu();
-//void AVLTree_Menu();
+void AVLTree_Menu();

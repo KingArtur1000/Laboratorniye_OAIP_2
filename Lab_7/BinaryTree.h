@@ -20,10 +20,10 @@ enum class BinaryTreeMenu {
 };
 
 
-struct Node {
+struct TreeNode {
     int info = 0;
-    Node* left = nullptr;
-    Node* right = nullptr;
+    TreeNode* left = nullptr;
+    TreeNode* right = nullptr;
 };
 
 /*
@@ -33,7 +33,7 @@ struct Node {
 */
 
 /*
-void BinarySearchTreeprint(tnode* BinarySearchTree) {
+void BinarySearchTreeprint(tTreeNode* BinarySearchTree) {
   if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
     cout << BinarySearchTree->field; //Отображаем корень дерева
     BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
@@ -41,7 +41,7 @@ void BinarySearchTreeprint(tnode* BinarySearchTree) {
   }
 }
 
-void BinarySearchTreeprint(tnode* BinarySearchTree) {
+void BinarySearchTreeprint(tTreeNode* BinarySearchTree) {
   if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
     BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
     cout << BinarySearchTree->field; //Отображаем корень дерева
@@ -49,7 +49,7 @@ void BinarySearchTreeprint(tnode* BinarySearchTree) {
   }
 }
 
-void BinarySearchTreeprint(tnode* BinarySearchTree) {
+void BinarySearchTreeprint(tTreeNode* BinarySearchTree) {
   if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
     BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
     BinarySearchTreeprint(BinarySearchTree->right); //Рекурсивная функция для правого поддерева
@@ -61,7 +61,7 @@ void BinarySearchTreeprint(tnode* BinarySearchTree) {
 
 class BinarySearchTree {
 
-    Node* root = nullptr; // Указатель на корневой узел
+    TreeNode* root = nullptr; // Указатель на корневой узел
     bool is_tree_empty = true;
     bool is_finded = true;
 
@@ -72,7 +72,7 @@ public:
     }
 
     BinarySearchTree(int root) {
-        this->root = new Node; // Создание нового корневого узла
+        this->root = new TreeNode; // Создание нового корневого узла
         this->root->info = root; // Присвоение значению корневого узла
     }
 
@@ -84,7 +84,7 @@ public:
 
     void add(int info) {
         if (root == nullptr) {
-            root = new Node; // Создание нового корневого узла
+            root = new TreeNode; // Создание нового корневого узла
             root->info = info; // Присвоение значению корневого узла
         }
         else {
@@ -95,10 +95,10 @@ public:
     }
 
 
-    Node* add(int info, Node* BinarySearchTree) {
+    TreeNode* add(int info, TreeNode* BinarySearchTree) {
         // Рекурсивное добавление узла в дерево
         if (BinarySearchTree == nullptr) {
-            BinarySearchTree = new Node;
+            BinarySearchTree = new TreeNode;
             BinarySearchTree->info = info;
         }
         else  if (info < BinarySearchTree->info) BinarySearchTree->left = add(info, BinarySearchTree->left);
@@ -110,7 +110,7 @@ public:
 
 
     // Методы удаления узлов из дерева
-    void dell(Node* BinarySearchTree) {
+    void dell(TreeNode* BinarySearchTree) {
         // Рекурсивное удаление узлов из дерева
         if (BinarySearchTree != nullptr) {
             dell(BinarySearchTree->left);
@@ -121,7 +121,7 @@ public:
     }
 
 
-    //void dell(int info, Node* BinarySearchTree, Node* BinarySearchTree_pred, char leftOrRight) {
+    //void dell(int info, TreeNode* BinarySearchTree, TreeNode* BinarySearchTree_pred, char leftOrRight) {
     //    // Удаление узла по значению
     //    if (BinarySearchTree == nullptr) {
     //        cout << "\t\t\t\tУдаление невозможно, элемент отсутствует :(" << '\n';
@@ -146,8 +146,8 @@ public:
 
 
     void erase(int info) {
-        Node* curr = root;
-        Node* parent = nullptr;
+        TreeNode* curr = root;
+        TreeNode* parent = nullptr;
 
         // Поиск узла для удаления
         while (curr && curr->info != info) {
@@ -164,7 +164,7 @@ public:
 
         // Удаление узла с одним или без потомков
         if (curr->left == nullptr || curr->right == nullptr) {
-            Node* child = (curr->left != nullptr) ? curr->left : curr->right;
+            TreeNode* child = (curr->left != nullptr) ? curr->left : curr->right;
 
             if (parent == nullptr) {
                 root = child; // Обновляем корень, если удаляемый узел был корнем
@@ -180,7 +180,7 @@ public:
         }
 
         // Удаление узла с двумя потомками
-        Node* replace = curr->right;
+        TreeNode* replace = curr->right;
         while (replace->left)
             replace = replace->left;
         int replace_value = replace->info;
@@ -191,13 +191,14 @@ public:
     }
 
 
-    void destroyTree(Node* node) {
-        if (node != nullptr) {
-            destroyTree(node->left);
-            destroyTree(node->right);
-            delete node;
+    void destroyTree(TreeNode* TreeNode) {
+        if (TreeNode != nullptr) {
+            destroyTree(TreeNode->left);
+            destroyTree(TreeNode->right);
+            delete TreeNode;
         }
     }
+
 
     void remove_all() {
         destroyTree(root);
@@ -222,11 +223,13 @@ public:
         if (is_finded) {
             cout << "Найден!\n";
         }
-        else { cout << "НЕ найден!\n"; }
+        else {
+            cout << "НЕ найден!\n";
+        }
     }
 
 
-    void search(int info, Node* BinarySearchTree) {
+    void search(int info, TreeNode* BinarySearchTree) {
 
         if (BinarySearchTree == nullptr) {
             is_finded = false;
@@ -241,15 +244,17 @@ public:
             is_finded = false;
         }
 
+
         if (is_finded) {
             cout << "Найден!\n";
         }
-        else { cout << "НЕ найден!\n"; }
-
+        else {
+            cout << "НЕ найден!\n";
+        }
     }
 
 
-    void showDirectOrder(Node* BinarySearchTree, int indent) {
+    void showDirectOrder(TreeNode* BinarySearchTree, int indent) {
         double width = 7;
 
         if (BinarySearchTree != nullptr) {
@@ -277,7 +282,7 @@ public:
     }
 
 
-    void showSymmetricalOrder(Node* BinarySearchTree, int indent) {
+    void showSymmetricalOrder(TreeNode* BinarySearchTree, int indent) {
         double width = 7;
         //cout << is_tree_empty;
 
@@ -306,7 +311,7 @@ public:
     }
 
 
-    void showReverseOrder(Node* BinarySearchTree, int indent) {
+    void showReverseOrder(TreeNode* BinarySearchTree, int indent) {
         double width = 5;
 
         if (BinarySearchTree != nullptr) {
