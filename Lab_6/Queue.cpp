@@ -10,7 +10,7 @@ Queue::~Queue() {
 
 
 bool Queue::isEmpty() const {
-    return front == nullptr;
+    return (front == nullptr);
 }
 
 

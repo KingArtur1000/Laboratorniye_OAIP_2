@@ -12,7 +12,7 @@ Stack::~Stack() {
 
 
 bool Stack::isEmpty() const {
-    return top == nullptr;
+    return (top == nullptr);
 }
 
 

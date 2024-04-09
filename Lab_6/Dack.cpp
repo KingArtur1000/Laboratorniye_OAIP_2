@@ -1,16 +1,16 @@
 ﻿#include "Dack.h"
 
 
-Dack::Dack() : front(nullptr), back(nullptr), size(0) {}
+Dack::Dack() : front(nullptr), back(nullptr), size(0) {}    //Конструктор
 
 
-Dack::~Dack() {
+Dack::~Dack() {     //Деструктор
     clear();
 }
 
 
 bool Dack::isEmpty() const {
-    return front == nullptr;
+    return (front == nullptr);
 }
 
 
