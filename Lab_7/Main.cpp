@@ -1,4 +1,4 @@
-#include "Lab_7.h"	//Подключили собственный заголовочный файл
+п»ї#include "Lab_7.h"	//РџРѕРґРєР»СЋС‡РёР»Рё СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р»
 
 
 int main() {
@@ -10,17 +10,17 @@ int main() {
     int choice = 0;
     int value = 0;
     bool flag = true;
-    string message = "Заверение работы...";
+    string message = "Р—Р°РІРµСЂРµРЅРёРµ СЂР°Р±РѕС‚С‹...";
 
     BinarySearchTree binary_search_tree = {};
 
 
     do {
-        cout << "\n\tС чем работаем? :)\n";
-        cout << "1) Бинарное дерево поиска\n";
-        cout << "2) AVL-дерево\n";
-        cout << "3) Выход\n";
-        cout << "\tВаш выбор --> ";     cin >> choice;     cout << '\n' << '\n';
+        cout << "\n\tРЎ С‡РµРј СЂР°Р±РѕС‚Р°РµРј? :)\n";
+        cout << "1) Р‘РёРЅР°СЂРЅРѕРµ РґРµСЂРµРІРѕ РїРѕРёСЃРєР°\n";
+        cout << "2) AVL-РґРµСЂРµРІРѕ\n";
+        cout << "3) Р’С‹С…РѕРґ\n";
+        cout << "\tР’Р°С€ РІС‹Р±РѕСЂ --> ";     cin >> choice;     cout << '\n' << '\n';
 
         switch (static_cast<MAIN_MENU>(choice)) {
         case MAIN_MENU::BINARY_TREE_MENU:         BinaryTree_Menu();      break;

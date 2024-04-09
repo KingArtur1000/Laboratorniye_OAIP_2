@@ -1,7 +1,7 @@
-#pragma once
+п»ї#pragma once
 
 #include <iostream>
-#include <iomanip>  // Включение стандартной библиотеки для манипуляций с выводом
+#include <iomanip>  // Р’РєР»СЋС‡РµРЅРёРµ СЃС‚Р°РЅРґР°СЂС‚РЅРѕР№ Р±РёР±Р»РёРѕС‚РµРєРё РґР»СЏ РјР°РЅРёРїСѓР»СЏС†РёР№ СЃ РІС‹РІРѕРґРѕРј
 
 
 using std::cout;
@@ -27,33 +27,33 @@ struct Node {
 };
 
 /*
-Обход дерева сверху вниз (в прямом порядке): A, B, C - префиксная форма.
-Обход дерева в симметричном порядке (слева направо): B, A, C - инфиксная форма.
-Обход дерева в обратном порядке (снизу вверх): B, C, A - постфиксная форма.
+РћР±С…РѕРґ РґРµСЂРµРІР° СЃРІРµСЂС…Сѓ РІРЅРёР· (РІ РїСЂСЏРјРѕРј РїРѕСЂСЏРґРєРµ): A, B, C - РїСЂРµС„РёРєСЃРЅР°СЏ С„РѕСЂРјР°.
+РћР±С…РѕРґ РґРµСЂРµРІР° РІ СЃРёРјРјРµС‚СЂРёС‡РЅРѕРј РїРѕСЂСЏРґРєРµ (СЃР»РµРІР° РЅР°РїСЂР°РІРѕ): B, A, C - РёРЅС„РёРєСЃРЅР°СЏ С„РѕСЂРјР°.
+РћР±С…РѕРґ РґРµСЂРµРІР° РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ (СЃРЅРёР·Сѓ РІРІРµСЂС…): B, C, A - РїРѕСЃС‚С„РёРєСЃРЅР°СЏ С„РѕСЂРјР°.
 */
 
 /*
 void BinarySearchTreeprint(tnode* BinarySearchTree) {
-  if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
-    cout << BinarySearchTree->field; //Отображаем корень дерева
-    BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
-    BinarySearchTreeprint(BinarySearchTree->right); //Рекурсивная функция для правого поддерева
+  if (BinarySearchTree != NULL) { //РџРѕРєР° РЅРµ РІСЃС‚СЂРµС‚РёС‚СЃСЏ РїСѓСЃС‚РѕР№ СѓР·РµР»
+    cout << BinarySearchTree->field; //РћС‚РѕР±СЂР°Р¶Р°РµРј РєРѕСЂРµРЅСЊ РґРµСЂРµРІР°
+    BinarySearchTreeprint(BinarySearchTree->left); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
+    BinarySearchTreeprint(BinarySearchTree->right); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїСЂР°РІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
   }
 }
 
 void BinarySearchTreeprint(tnode* BinarySearchTree) {
-  if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
-    BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
-    cout << BinarySearchTree->field; //Отображаем корень дерева
-    BinarySearchTreeprint(BinarySearchTree->right); //Рекурсивная функция для правого поддерева
+  if (BinarySearchTree != NULL) { //РџРѕРєР° РЅРµ РІСЃС‚СЂРµС‚РёС‚СЃСЏ РїСѓСЃС‚РѕР№ СѓР·РµР»
+    BinarySearchTreeprint(BinarySearchTree->left); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
+    cout << BinarySearchTree->field; //РћС‚РѕР±СЂР°Р¶Р°РµРј РєРѕСЂРµРЅСЊ РґРµСЂРµРІР°
+    BinarySearchTreeprint(BinarySearchTree->right); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїСЂР°РІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
   }
 }
 
 void BinarySearchTreeprint(tnode* BinarySearchTree) {
-  if (BinarySearchTree != NULL) { //Пока не встретится пустой узел
-    BinarySearchTreeprint(BinarySearchTree->left); //Рекурсивная функция для левого поддерева
-    BinarySearchTreeprint(BinarySearchTree->right); //Рекурсивная функция для правого поддерева
-    cout << BinarySearchTree->field; //Отображаем корень дерева
+  if (BinarySearchTree != NULL) { //РџРѕРєР° РЅРµ РІСЃС‚СЂРµС‚РёС‚СЃСЏ РїСѓСЃС‚РѕР№ СѓР·РµР»
+    BinarySearchTreeprint(BinarySearchTree->left); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
+    BinarySearchTreeprint(BinarySearchTree->right); //Р РµРєСѓСЂСЃРёРІРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїСЂР°РІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
+    cout << BinarySearchTree->field; //РћС‚РѕР±СЂР°Р¶Р°РµРј РєРѕСЂРµРЅСЊ РґРµСЂРµРІР°
   }
 }
 
@@ -61,34 +61,34 @@ void BinarySearchTreeprint(tnode* BinarySearchTree) {
 
 class BinarySearchTree {
 
-    Node* root = nullptr; // Указатель на корневой узел
+    Node* root = nullptr; // РЈРєР°Р·Р°С‚РµР»СЊ РЅР° РєРѕСЂРЅРµРІРѕР№ СѓР·РµР»
     bool is_tree_empty = true;
     bool is_finded = true;
 
 public:
 
     BinarySearchTree() {
-        cout << "\t\t\t\tДерево создано :)" << '\n';
+        cout << "\t\t\t\tР”РµСЂРµРІРѕ СЃРѕР·РґР°РЅРѕ :)" << '\n';
     }
 
     BinarySearchTree(int root) {
-        this->root = new Node; // Создание нового корневого узла
-        this->root->info = root; // Присвоение значению корневого узла
+        this->root = new Node; // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°
+        this->root->info = root; // РџСЂРёСЃРІРѕРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЋ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°
     }
 
     ~BinarySearchTree() {
         remove_all();
-        cout << "\n\t\t\t\tДерево удалено :(" << '\n';
+        cout << "\n\t\t\t\tР”РµСЂРµРІРѕ СѓРґР°Р»РµРЅРѕ :(" << '\n';
     }
 
 
     void add(int info) {
         if (root == nullptr) {
-            root = new Node; // Создание нового корневого узла
-            root->info = info; // Присвоение значению корневого узла
+            root = new Node; // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°
+            root->info = info; // РџСЂРёСЃРІРѕРµРЅРёРµ Р·РЅР°С‡РµРЅРёСЋ РєРѕСЂРЅРµРІРѕРіРѕ СѓР·Р»Р°
         }
         else {
-            root = add(info, root); // Добавление узла
+            root = add(info, root); // Р”РѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р°
         }
 
         is_tree_empty = false;
@@ -96,35 +96,35 @@ public:
 
 
     Node* add(int info, Node* BinarySearchTree) {
-        // Рекурсивное добавление узла в дерево
+        // Р РµРєСѓСЂСЃРёРІРЅРѕРµ РґРѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р° РІ РґРµСЂРµРІРѕ
         if (BinarySearchTree == nullptr) {
             BinarySearchTree = new Node;
             BinarySearchTree->info = info;
         }
         else  if (info < BinarySearchTree->info) BinarySearchTree->left = add(info, BinarySearchTree->left);
         else  if (info > BinarySearchTree->info) BinarySearchTree->right = add(info, BinarySearchTree->right);
-        else cout << "\t\t\t\tПовторилось, " << info << " уже есть." << '\n';
+        else cout << "\t\t\t\tРџРѕРІС‚РѕСЂРёР»РѕСЃСЊ, " << info << " СѓР¶Рµ РµСЃС‚СЊ." << '\n';
 
         return BinarySearchTree;
     }
 
 
-    // Методы удаления узлов из дерева
+    // РњРµС‚РѕРґС‹ СѓРґР°Р»РµРЅРёСЏ СѓР·Р»РѕРІ РёР· РґРµСЂРµРІР°
     void dell(Node* BinarySearchTree) {
-        // Рекурсивное удаление узлов из дерева
+        // Р РµРєСѓСЂСЃРёРІРЅРѕРµ СѓРґР°Р»РµРЅРёРµ СѓР·Р»РѕРІ РёР· РґРµСЂРµРІР°
         if (BinarySearchTree != nullptr) {
             dell(BinarySearchTree->left);
             dell(BinarySearchTree->right);
-            delete BinarySearchTree; // Удаление текущего узла
+            delete BinarySearchTree; // РЈРґР°Р»РµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ СѓР·Р»Р°
             BinarySearchTree = nullptr;
         }
     }
 
 
     //void dell(int info, Node* BinarySearchTree, Node* BinarySearchTree_pred, char leftOrRight) {
-    //    // Удаление узла по значению
+    //    // РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р° РїРѕ Р·РЅР°С‡РµРЅРёСЋ
     //    if (BinarySearchTree == nullptr) {
-    //        cout << "\t\t\t\tУдаление невозможно, элемент отсутствует :(" << '\n';
+    //        cout << "\t\t\t\tРЈРґР°Р»РµРЅРёРµ РЅРµРІРѕР·РјРѕР¶РЅРѕ, СЌР»РµРјРµРЅС‚ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ :(" << '\n';
     //    }
     //    else {
     //        if (info == BinarySearchTree->info) {
@@ -149,7 +149,7 @@ public:
         Node* curr = root;
         Node* parent = nullptr;
 
-        // Поиск узла для удаления
+        // РџРѕРёСЃРє СѓР·Р»Р° РґР»СЏ СѓРґР°Р»РµРЅРёСЏ
         while (curr && curr->info != info) {
             parent = curr;
             if (info < curr->info)
@@ -158,16 +158,16 @@ public:
                 curr = curr->right;
         }
 
-        // Если узел не найден, возвращаемся
+        // Р•СЃР»Рё СѓР·РµР» РЅРµ РЅР°Р№РґРµРЅ, РІРѕР·РІСЂР°С‰Р°РµРјСЃСЏ
         if (!curr)
             return;
 
-        // Удаление узла с одним или без потомков
+        // РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р° СЃ РѕРґРЅРёРј РёР»Рё Р±РµР· РїРѕС‚РѕРјРєРѕРІ
         if (curr->left == nullptr || curr->right == nullptr) {
             Node* child = (curr->left != nullptr) ? curr->left : curr->right;
 
             if (parent == nullptr) {
-                root = child; // Обновляем корень, если удаляемый узел был корнем
+                root = child; // РћР±РЅРѕРІР»СЏРµРј РєРѕСЂРµРЅСЊ, РµСЃР»Рё СѓРґР°Р»СЏРµРјС‹Р№ СѓР·РµР» Р±С‹Р» РєРѕСЂРЅРµРј
             }
             else {
                 if (parent->left == curr)
@@ -179,12 +179,12 @@ public:
             return;
         }
 
-        // Удаление узла с двумя потомками
+        // РЈРґР°Р»РµРЅРёРµ СѓР·Р»Р° СЃ РґРІСѓРјСЏ РїРѕС‚РѕРјРєР°РјРё
         Node* replace = curr->right;
         while (replace->left)
             replace = replace->left;
         int replace_value = replace->info;
-        erase(replace_value); // Рекурсивно удаляем наименьший элемент из правого поддерева
+        erase(replace_value); // Р РµРєСѓСЂСЃРёРІРЅРѕ СѓРґР°Р»СЏРµРј РЅР°РёРјРµРЅСЊС€РёР№ СЌР»РµРјРµРЅС‚ РёР· РїСЂР°РІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
         curr->info = replace_value;
 
         is_tree_empty = true;
@@ -220,9 +220,9 @@ public:
         }
 
         if (is_finded) {
-            cout << "Найден!\n";
+            cout << "РќР°Р№РґРµРЅ!\n";
         }
-        else { cout << "НЕ найден!\n"; }
+        else { cout << "РќР• РЅР°Р№РґРµРЅ!\n"; }
     }
 
 
@@ -242,9 +242,9 @@ public:
         }
 
         if (is_finded) {
-            cout << "Найден!\n";
+            cout << "РќР°Р№РґРµРЅ!\n";
         }
-        else { cout << "НЕ найден!\n"; }
+        else { cout << "РќР• РЅР°Р№РґРµРЅ!\n"; }
 
     }
 
@@ -272,7 +272,7 @@ public:
             showDirectOrder(root->right, indent + 12);
         }
         else {
-            cout << "\t\t\t\tДерево пустое :(" << '\n';
+            cout << "\t\t\t\tР”РµСЂРµРІРѕ РїСѓСЃС‚РѕРµ :(" << '\n';
         }
     }
 
@@ -301,7 +301,7 @@ public:
             showSymmetricalOrder(root->right, indent + 12);
         }
         else {
-            cout << "\t\t\t\tДерево пустое :(" << '\n';
+            cout << "\t\t\t\tР”РµСЂРµРІРѕ РїСѓСЃС‚РѕРµ :(" << '\n';
         }
     }
 
@@ -329,12 +329,12 @@ public:
             cout << "\t\t\t\t" << setw(indent + width) << root->info << /*" " << root << " " << root->left << " " << root->right <<*/ '\n';
         }
         else {
-            cout << "\t\t\t\tДерево пустое :(" << '\n';
+            cout << "\t\t\t\tР”РµСЂРµРІРѕ РїСѓСЃС‚РѕРµ :(" << '\n';
         }
     }
 
 
     void input_value(int& value) {
-        cout << "Введите значение узла --> ";   cin >> value;   cout << '\n';
+        cout << "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ СѓР·Р»Р° --> ";   cin >> value;   cout << '\n';
     }
 };

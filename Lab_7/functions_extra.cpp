@@ -1,4 +1,4 @@
-#include "functions_extra.h"
+ï»¿#include "functions_extra.h"
 
 
 void exit(bool& flag, string& message) {
@@ -8,5 +8,5 @@ void exit(bool& flag, string& message) {
 
 
 void error() {
-	cout << "Íåâåðíûé âûáîð! Íàïèøèòå òîëüêî ÖÈÔÐÓ âàøåãî âûáîðà (áåç ñêîáêè)\n\n";
+	cout << "ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ð²Ñ‹Ð±Ð¾Ñ€! ÐÐ°Ð¿Ð¸ÑˆÐ¸Ñ‚Ðµ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¦Ð˜Ð¤Ð Ð£ Ð²Ð°ÑˆÐµÐ³Ð¾ Ð²Ñ‹Ð±Ð¾Ñ€Ð° (Ð±ÐµÐ· ÑÐºÐ¾Ð±ÐºÐ¸)\n\n";
 }
