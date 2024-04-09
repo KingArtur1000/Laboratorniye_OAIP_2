@@ -61,33 +61,4 @@ void BinaryTree_Menu() {   //binary_search_tree - двусторонняя оч�
 //        }
 //    } while (flag);
 //}
-//
-//
-//void Stack_Menu(int value, int position) {  //Стек
-//    Stack stack = {};
-//    int choice = 0;
-//    bool flag = true;
-//    string message = "Возвращаемся в основное меню...";
-//
-//
-//    do {
-//        cout << "\n\t\t**** МЕНЮ ВЗАИМОДЕЙСТВИЯ СО -СТЕКОМ- ****\n";
-//        cout << "------------------------------------------------------\n";
-//        cout << "1) Добавление значения в вершину\n";
-//        cout << "2) Удаление значения из вершины\n";
-//        cout << "3) Удаление всех данных\n";
-//        cout << "4) Вывод всего стека\n";
-//        cout << "5) Вернуться в основное меню\n";
-//        cout << "\tВаш выбор --> ";   cin >> choice;      cout << '\n';
-//
-//
-//        switch (static_cast<Stack_operation>(choice)) {
-//        case Stack_operation::ADD_VALUE:    stack.push(value);      break;
-//        case Stack_operation::REMOVE_VALUE: stack.pop();            break;
-//        case Stack_operation::CLEAR_STACK:  stack.clear();          break;
-//        case Stack_operation::PRINT_STACK:  stack.print();          break;
-//        case Stack_operation::EXIT:         exit(flag, message);    break;
-//        default:                            error();
-//        }
-//    } while (flag);
-//}
+
