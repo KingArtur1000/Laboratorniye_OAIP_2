@@ -31,10 +31,8 @@ template<size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value,
 
             Поэтому используем обратный порядок перебора (справа налево)
     */ 
-    for (int i = 0; i < N; i++) {
-        if (i < table.size()) {
-            result[M - 1 - i] = value[N - 1 - table[i]];
-        }
+    for (int i = 0; i < table.size(); i++) {
+        result[M - 1 - i] = value[N - 1 - table[i]];
     }
 
     return result;
@@ -74,21 +72,18 @@ vector<bit_8_t> generate_keys() {
 
 
     bit_10_t key = permute<10, 10>(KEY, P10);
-
     cout << "Перестановка P10: " << key << '\n' << '\n';
 
 
     cout << "\n\t *** Циклический свдиг влево на одну позицию (каждой половины ключа) ***\n";
 
     key = сyclic_shift_left<10>(key, 1);
-
     cout << "Объединенный ключ: " << key << '\n' << '\n';
 
 
     cout << "\n\t **** Генерация ключа №1 ****\n\n";
 
     keys.at(0) = permute<10, 8>(key, P8);
-
     cout << "Перестановка P8: " << keys.at(0) << '\n';
 
     cout << "\t Ключ №1 = " << keys.at(0) << '\n' << '\n';
@@ -100,12 +95,10 @@ vector<bit_8_t> generate_keys() {
     cout << "\n\t *** Циклический свдиг влево на две позицию (каждой половины ключа) ***\n";
 
     key = сyclic_shift_left<10>(key, 2);
-
     cout << "Объединенный ключ: " << key << '\n' << '\n';
 
 
     keys.at(1) = permute<10, 8>(key, P8);
-
     cout << "Перестановка P8: " << keys.at(1) << '\n';
 
     cout << "\t Ключ №2 = " << keys.at(1) << '\n' << '\n';
@@ -115,40 +108,68 @@ vector<bit_8_t> generate_keys() {
 }
 
 
+int sbox(bit_4_t value, const int S[4][4]) {
+    // Получаем двоичную строку (первый бит + последний бит)
+    bit_2_t row_2(value.to_string().substr(0, 1) + value.to_string().substr(3, 1));
+    cout << "Двоичная строка: " << row_2 << '\n' << '\n';
 
-bit_8_t sbox(bit_8_t value, const int S[4][4]) {
-    //int row = (value >> 1);
-    //int col = value;
-    return S[4][4];
+    // Получаем двоичный столбец (2 бита по-середине)
+    bit_2_t col_2(value.to_string().substr(1, 2));
+    cout << "Двоичный столбец: " << col_2 << '\n' << '\n';
+
+    int row = row_2.to_ulong();
+    int col = col_2.to_ulong();
+
+    return S[row][col];
 }
 
 
 // Функция для шифрования символа
-bit_8_t encrypt_char(bit_8_t plaintext) {
+bit_8_t encrypt_char(bit_8_t plaintext_8) {
     vector<bit_8_t> keys = generate_keys();
 
-    cout << "Изначальный код символа: " << plaintext << '\n' << '\n';
+    cout << "Изначальный код символа: " << plaintext_8 << '\n' << '\n';
 
-    plaintext = permute<8, 8>(plaintext, IP);
+    plaintext_8 = permute<8, 8>(plaintext_8, IP);
+    cout << "Перестановка IP: " << plaintext_8 << '\n' << '\n';
 
-    cout << "Перестановка IP: " << plaintext << '\n' << '\n';
 
-
-    // Получаем левую половину (первые 4 бит)
-    bit_4_t plaintext_left(plaintext.to_string().substr(0, 4));
 
     // Получаем правую половину (последние 4 бит)
-    bit_4_t plaintext_right(plaintext.to_string().substr(4, 4));
+    bit_4_t plaintext_right(plaintext_8.to_string().substr(4, 4));
+
+    plaintext_8 = permute<4, 8>(plaintext_right, EP);
+    cout << "Перестановка E/P(R): " << plaintext_8 << "\n\n";
+
+    plaintext_8 = ( plaintext_8 ^ keys[0] );
+
+    cout << "Операция XOR(E/P(R), k1): " << plaintext_8 << '\n' << '\n';
 
 
+    // Получаем левую половину (последние 4 бит)
+    bit_4_t plaintext_left(plaintext_8.to_string().substr(0, 4));
+    // Получаем правую половину (последние 4 бит)
+    plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
+    cout << "Левая часть: " << plaintext_left << '\n' << '\n';
+    cout << "Правая часть: " << plaintext_right << '\n' << '\n';
 
 
+    bit_2_t plaintext_left_2 = sbox(plaintext_left, S0);
+    bit_2_t plaintext_right_2 = sbox(plaintext_right, S1);
+    bit_4_t plaintext_4 = (plaintext_left_2.to_ulong() << 2) | plaintext_right_2.to_ulong();
+    cout << "Результат работы S-матриц: " << plaintext_4 << '\n' << '\n';
 
 
-    //bit_8_t left = plaintext >> 4;
-    //bit_8_t right = plaintext;
-    //right = permute<8, 8>(right, EP);
-    //right = right ^ keys[0];
+    plaintext_4 = permute<4, 4>(plaintext_4, P4);
+    cout << "Перестановка P4: " << plaintext_4 << '\n' << '\n';
+
+
+    plaintext_4 = plaintext_left ^ plaintext_4;
+    cout << "Операция XOR(L, P4): " << plaintext_4 << '\n' << '\n';
+
+
+    plaintext_8;
+
     //right = sbox(right >> 4, S0) << 2 | sbox(right, S1);
     //right = permute<8, 4>(right, P4, 4);
     //right = right ^ left;
@@ -162,7 +183,7 @@ bit_8_t encrypt_char(bit_8_t plaintext) {
     //right = right ^ left;
     //int ciphertext = (right << 4) | left;
     //ciphertext = permute(ciphertext, IP_1, 8);
-    return plaintext;
+    return plaintext_8;
 }
 
 // Функция для расшифрования символа
