@@ -15,7 +15,7 @@ const int S1[4][4] = { {1, 1, 2, 3}, {2, 0, 1, 3}, {3, 0, 1, 0}, {2, 1, 0, 3} };
 const bit_10_t KEY("1010000010");
 
 
-// Функции для операций замены и перестановки
+// Функция для операций замены и перестановки
 template<size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value, const vector<int>& table) {
 
     /*  N - кол-во битов у значения, с которым мы будем работать ( к примеру 10-битный ключ )
@@ -84,9 +84,9 @@ vector<bit_8_t> generate_keys() {
     cout << "\n\t **** Генерация ключа №1 ****\n\n";
 
     keys.at(0) = permute<10, 8>(key, P8);
-    cout << "Перестановка P8: " << keys.at(0) << '\n';
+    cout << "Перестановка P8: " << keys.at(0) << '\n' << '\n';
 
-    cout << "\t Ключ №1 = " << keys.at(0) << '\n' << '\n';
+    cout << "\t Ключ №1 = " << keys.at(0) << '\n' << '\n' << '\n';
 
 
     cout << "\n\t **** Генерация ключа №2 ****\n\n";
@@ -99,9 +99,9 @@ vector<bit_8_t> generate_keys() {
 
 
     keys.at(1) = permute<10, 8>(key, P8);
-    cout << "Перестановка P8: " << keys.at(1) << '\n';
+    cout << "Перестановка P8: " << keys.at(1) << '\n' << '\n';
 
-    cout << "\t Ключ №2 = " << keys.at(1) << '\n' << '\n';
+    cout << "\t Ключ №2 = " << keys.at(1) << '\n' << '\n' << '\n';
 
 
     return keys;
@@ -140,7 +140,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
     // Получаем правую половину (последние 4 бит)
     bit_4_t plaintext_right_IP(plaintext_8.to_string().substr(4, 4));
     plaintext_8 = permute<4, 8>(plaintext_right_IP, EP);
-    cout << "Перестановка E/P(R): " << plaintext_8 << "\n\n";
+    cout << "Перестановка E/P(R): " << plaintext_8 << '\n' << '\n';
 
 
     plaintext_8 = ( plaintext_8 ^ keys[0] );
@@ -179,7 +179,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
     bit_4_t plaintext_right_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
 
     plaintext_8 = permute<4, 8>(plaintext_right_main, EP);
-    cout << "Перестановка E/P(R): " << plaintext_8 << "\n\n";
+    cout << "Перестановка E/P(R): " << plaintext_8 << '\n' << '\n';
 
     plaintext_8 = (plaintext_8 ^ keys[1]);
     cout << "Операция XOR(E/P(R), k2): " << plaintext_8 << '\n' << '\n';
