@@ -141,12 +141,9 @@ public:
 
     void insert() {
         // 2 0 1 6 3 4 5    - условие Варианта №4
-        insert(2);
-        showSymmetricalOrder();
         
-
-        insert(0);
-        showSymmetricalOrder();
+        insert(2); showSymmetricalOrder();
+        insert(0); showSymmetricalOrder();
 
 
         insert(1);
@@ -199,6 +196,7 @@ public:
 
 
     void showSymmetricalOrder(AVL_Node* AVL_Node, int indent) {
+
         double width = 7;
 
         if (AVL_Node != nullptr) {
