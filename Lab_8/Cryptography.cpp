@@ -135,21 +135,22 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
 
 
 
-    // Получаем правую половину (последние 4 бит)
-    bit_4_t plaintext_right(plaintext_8.to_string().substr(4, 4));
+    cout << "\n\t**** Вычисление шифрование f ключа №1 ****";
 
-    plaintext_8 = permute<4, 8>(plaintext_right, EP);
+    // Получаем правую половину (последние 4 бит)
+    bit_4_t plaintext_right_IP(plaintext_8.to_string().substr(4, 4));
+    plaintext_8 = permute<4, 8>(plaintext_right_IP, EP);
     cout << "Перестановка E/P(R): " << plaintext_8 << "\n\n";
 
-    plaintext_8 = ( plaintext_8 ^ keys[0] );
 
+    plaintext_8 = ( plaintext_8 ^ keys[0] );
     cout << "Операция XOR(E/P(R), k1): " << plaintext_8 << '\n' << '\n';
 
 
     // Получаем левую половину (последние 4 бит)
     bit_4_t plaintext_left(plaintext_8.to_string().substr(0, 4));
     // Получаем правую половину (последние 4 бит)
-    plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
+    bit_4_t plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
     cout << "Левая часть: " << plaintext_left << '\n' << '\n';
     cout << "Правая часть: " << plaintext_right << '\n' << '\n';
 
@@ -167,22 +168,50 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
     plaintext_4 = plaintext_left ^ plaintext_4;
     cout << "Операция XOR(L, P4): " << plaintext_4 << '\n' << '\n';
 
+    plaintext_8 = (plaintext_right_IP.to_ulong() << 4) | plaintext_4.to_ulong();
+    cout << "Перестановка SW: " << plaintext_8 << '\n' << '\n';
 
-    plaintext_8;
 
-    //right = sbox(right >> 4, S0) << 2 | sbox(right, S1);
-    //right = permute<8, 4>(right, P4, 4);
-    //right = right ^ left;
-    //int temp = right;
-    //right = left;
-    //left = temp;
-    //right = permute(right, EP, 8);
-    //right = right ^ keys[1];
-    //right = sbox(right >> 4, S0) << 2 | sbox(right, S1);
-    //right = permute(right, P4, 4);
-    //right = right ^ left;
-    //int ciphertext = (right << 4) | left;
-    //ciphertext = permute(ciphertext, IP_1, 8);
+
+    cout << "\n\t**** Вычисление шифрование f ключа №2 ****";
+
+    bit_4_t plaintext_left_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(0, 4));
+    bit_4_t plaintext_right_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
+
+    plaintext_8 = permute<4, 8>(plaintext_right_main, EP);
+    cout << "Перестановка E/P(R): " << plaintext_8 << "\n\n";
+
+    plaintext_8 = (plaintext_8 ^ keys[1]);
+    cout << "Операция XOR(E/P(R), k2): " << plaintext_8 << '\n' << '\n';
+
+
+    plaintext_left = static_cast<bit_4_t>(plaintext_8.to_string().substr(0, 4));
+    plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
+    cout << "Левая часть: " << plaintext_left << '\n' << '\n';
+    cout << "Правая часть: " << plaintext_right << '\n' << '\n';
+
+
+    plaintext_left_2 = sbox(plaintext_left, S0);
+    plaintext_right_2 = sbox(plaintext_right, S1);
+    plaintext_4 = (plaintext_left_2.to_ulong() << 2) | plaintext_right_2.to_ulong();
+    cout << "Результат работы S-матриц: " << plaintext_4 << '\n' << '\n';
+
+
+    plaintext_4 = permute<4, 4>(plaintext_4, P4);
+    cout << "Перестановка P4: " << plaintext_4 << '\n' << '\n';
+
+
+    plaintext_4 = plaintext_left_main ^ plaintext_4;
+    cout << "Операция XOR(L, P4): " << plaintext_4 << '\n' << '\n';
+
+
+    plaintext_8 = (plaintext_4.to_ulong() << 4) | plaintext_right_main.to_ulong();
+    cout << "Перестановка SW(XOR(L, P4), R): " << plaintext_8 << '\n' << '\n';
+
+
+    plaintext_8 = permute<8, 8>(plaintext_8, IP_1);
+    cout << "Перестановка IP^-1: " << plaintext_8 << '\n' << '\n';
+   
     return plaintext_8;
 }
 
