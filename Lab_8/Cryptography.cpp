@@ -295,8 +295,16 @@ bit_8_t decrypt_char(bit_8_t ciphertext_8) {
     cout << "Перестановка P4: " << ciphertext_4 << '\n' << '\n';
 
 
-    ciphertext_4 = ciphertext_4 ^ ciphertext_left_IP;
+    ciphertext_4 = ciphertext_4 ^ ciphertext_left_begin;
     cout << "Операция XOR(L, P4): " << ciphertext_4 << '\n' << '\n';
+
+
+    ciphertext_8 = (ciphertext_4.to_ulong() << 4) | ciphertext_right_begin.to_ulong();
+    cout << "Перестановка SW(XOR(L, P4), R): " << ciphertext_8 << '\n' << '\n';
+
+
+    ciphertext_8 = permute<8, 8>(ciphertext_8, IP_1);
+    cout << "Перестановка IP^-1: " << ciphertext_8 << '\n' << '\n';
 
 
     return ciphertext_8;
