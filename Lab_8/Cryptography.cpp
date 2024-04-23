@@ -12,7 +12,7 @@ const int S0[4][4] = { {1, 0, 3, 2}, {3, 2, 1, 0}, {0, 2, 1, 3}, {3, 1, 3, 1} };
 const int S1[4][4] = { {1, 1, 2, 3}, {2, 0, 1, 3}, {3, 0, 1, 0}, {2, 1, 0, 3} };
 
 // Статический ключ
-const bit_10_t KEY("1010000010");
+const bit_10_t KEY("0000010010");
 
 
 // Функция для операций замены и перестановки
@@ -224,6 +224,7 @@ bit_8_t decrypt_char(bit_8_t ciphertext_8) {
 
     cout << "\tИзначальный код зашифрованного символа: " << ciphertext_8 << '\n' << '\n';
 
+
     cout << "\n\t**** Вычисление расшифрование f1 ****\n";
 
     ciphertext_8 = permute<8, 8>(ciphertext_8, IP);
@@ -263,6 +264,7 @@ bit_8_t decrypt_char(bit_8_t ciphertext_8) {
 
     ciphertext_8 = (ciphertext_right_IP.to_ulong() << 4 | ciphertext_4.to_ulong());
     cout << "Перестановка SW: " << ciphertext_8 << '\n' << '\n';
+
 
 
     cout << "\n\t**** Вычисление расшифрование f2 ****\n";
@@ -312,18 +314,29 @@ bit_8_t decrypt_char(bit_8_t ciphertext_8) {
 
 
 
-//// Функция для шифрования строки
-//string encrypt_string(string plaintext) {
-//    string ciphertext = "";
-//    for (char c : plaintext) {
-//        int cipherchar = encrypt_char(c);
-//        ciphertext += static_cast<char>(cipherchar);
-//    }
-//    return ciphertext;
-//}
-//
-//
-//// Функция для расшифрования строки
+// Функция для шифрования строки
+string encrypt_string(string& plaintext) {
+    string ciphertext = "";
+    int i = 1;
+
+    for (bit_8_t c : plaintext) {
+
+        cout << "\n\n\t\t*************** Шифрование символа №" << i << " ***************" << '\n' << '\n' << '\n';
+
+        bit_8_t cipherchar = encrypt_char(c);
+
+        cout << cipherchar << '\n';
+
+        ciphertext += static_cast<char>(cipherchar.to_ulong());
+
+        i++;
+    }
+
+    return plaintext;
+}
+
+
+// Функция для расшифрования строки
 //string decrypt_string(string ciphertext) {
 //    string plaintext = "";
 //    for (char c : ciphertext) {

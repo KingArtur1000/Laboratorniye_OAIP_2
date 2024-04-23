@@ -21,5 +21,5 @@ template <size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value
 int sbox(bit_4_t value, const int S[4][4]);
 bit_8_t encrypt_char(bit_8_t plaintext_8);	// Функция для шифрования символа
 bit_8_t decrypt_char(bit_8_t ciphertext_8);	// Функция для расшифрования символа
-//string encrypt_string(string plaintext);	// Функция для шифрования строки
+string encrypt_string(string& plaintext);	// Функция для шифрования строки
 //string decrypt_string(string ciphertext);	// Функция для расшифрования строки

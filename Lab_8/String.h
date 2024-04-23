@@ -15,10 +15,27 @@ using std::string;
 
 class String {
 
+
+    string input(string& str) {
+        cout << "\tВведите символ для шифрования (первая буква фамилии на английском) --> ";
+
+        cin.clear(); cin.ignore();
+        std::getline(cin, str);   cout << '\n' << '\n';
+
+        return str;
+    }
+
+
     void encode() {
         cout << "\tПроцесс зашифрования строки:\n\n";
 
+        string str_original = "";
 
+        cout << "\tВведите символ для шифрования (первая буква фамилии на английском) --> ";
+        cin.clear(); cin.ignore();
+        std::getline(cin, str_original);   cout << '\n' << '\n';
+
+        encrypt_string(str_original);
     }
 
 

@@ -50,7 +50,7 @@ class Symbol {
 
         bit_8_t plaintext = decrypt_char(symbol_encrypted);
 
-        cout << "Расшифрованный символ: " << static_cast<char>(plaintext.to_ulong()) << '\n';
+        cout << "Расшифрованный символ: " << static_cast<char>(plaintext.to_ulong()) << '\n' << '\n';
     }
 
 
