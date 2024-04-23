@@ -34,7 +34,7 @@ class Symbol {
 
         symbol_encrypted = static_cast<char>(ciphertext.to_ulong());
 
-        cout << "Зашифрованный символ: " << symbol_encrypted << '\n' << '\n';
+        cout << "\n\t\tЗашифрованный символ: " << symbol_encrypted << '\n' << '\n';
     }
 
 
@@ -43,7 +43,7 @@ class Symbol {
 
         bit_8_t plaintext = decrypt_char(symbol_encrypted);
 
-        cout << "Расшифрованный символ: " << static_cast<char>(plaintext.to_ulong()) << '\n' << '\n';
+        cout << "\n\t\tРасшифрованный символ: " << static_cast<char>(plaintext.to_ulong()) << '\n' << '\n';
     }
 
 

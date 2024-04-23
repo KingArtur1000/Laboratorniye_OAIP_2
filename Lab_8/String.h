@@ -36,7 +36,7 @@ class String {
 
         str_original = decrypt_string(str_encrypted);
 
-        cout << "Расшифрованная строка: " << str_original << '\n' << '\n';
+        cout << "\n\t\tРасшифрованная строка: " << str_original << '\n' << '\n';
     }
 
 
