@@ -1,35 +1,35 @@
-#include "Сryptography.h"
+п»ї#include "РЎryptography.h"
 
 
-// Таблицы для операций замены и перестановки
-const vector<int> IP = { 1, 5, 2, 0, 3, 7, 4, 6 };    // IР: { 2 6 3 1 4 8 5 7 }
-const vector<int> IP_1 = { 3, 0, 2, 4, 6, 1, 7, 5 };  // IР^-1: { 4 1 3 5 7 2 8 6 }
-const vector<int> P10 = { 2, 4, 1, 6, 3, 9, 0, 8, 7, 5 };     // Р10: { 3 5 2 7 4 10 1 9 8 6 }
-const vector<int> P8 = { 5, 2, 6, 3, 7, 4, 9, 8 };    // Р8: { 6 3 7 4 8 5 10 9}
-const vector<int> P4 = { 1, 3, 2, 0 };    // Р4: { 2 4 3 1 }
+// РўР°Р±Р»РёС†С‹ РґР»СЏ РѕРїРµСЂР°С†РёР№ Р·Р°РјРµРЅС‹ Рё РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё
+const vector<int> IP = { 1, 5, 2, 0, 3, 7, 4, 6 };    // IР : { 2 6 3 1 4 8 5 7 }
+const vector<int> IP_1 = { 3, 0, 2, 4, 6, 1, 7, 5 };  // IР ^-1: { 4 1 3 5 7 2 8 6 }
+const vector<int> P10 = { 2, 4, 1, 6, 3, 9, 0, 8, 7, 5 };     // Р 10: { 3 5 2 7 4 10 1 9 8 6 }
+const vector<int> P8 = { 5, 2, 6, 3, 7, 4, 9, 8 };    // Р 8: { 6 3 7 4 8 5 10 9}
+const vector<int> P4 = { 1, 3, 2, 0 };    // Р 4: { 2 4 3 1 }
 const vector<int> EP = { 3, 0, 1, 2, 1, 2, 3, 0 };    // E/P: { 4 1 2 3 2 3 4 1}
 const int S0[4][4] = { {1, 0, 3, 2}, {3, 2, 1, 0}, {0, 2, 1, 3}, {3, 1, 3, 1} };
 const int S1[4][4] = { {1, 1, 2, 3}, {2, 0, 1, 3}, {3, 0, 1, 0}, {2, 1, 0, 3} };
 
-// Статический ключ
+// РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РєР»СЋС‡
 const bit_10_t KEY("1010000010");
 
 
-// Функция для операций замены и перестановки
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РѕРїРµСЂР°С†РёР№ Р·Р°РјРµРЅС‹ Рё РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё
 template<size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value, const vector<int>& table) {
 
-    /*  N - кол-во битов у значения, с которым мы будем работать ( к примеру 10-битный ключ )
-        M - кол-во битов выходного значения ( к примеру подключ, у которого 8 бит )
+    /*  N - РєРѕР»-РІРѕ Р±РёС‚РѕРІ Сѓ Р·РЅР°С‡РµРЅРёСЏ, СЃ РєРѕС‚РѕСЂС‹Рј РјС‹ Р±СѓРґРµРј СЂР°Р±РѕС‚Р°С‚СЊ ( Рє РїСЂРёРјРµСЂСѓ 10-Р±РёС‚РЅС‹Р№ РєР»СЋС‡ )
+        M - РєРѕР»-РІРѕ Р±РёС‚РѕРІ РІС‹С…РѕРґРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ ( Рє РїСЂРёРјРµСЂСѓ РїРѕРґРєР»СЋС‡, Сѓ РєРѕС‚РѕСЂРѕРіРѕ 8 Р±РёС‚ )
     */
 
     std::bitset<M> result;
 
-    // Перестановка каждого символа в соответствии заданной перестановки :)
+    // РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° РєР°Р¶РґРѕРіРѕ СЃРёРјРІРѕР»Р° РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё Р·Р°РґР°РЅРЅРѕР№ РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё :)
     /*      
-            !!! Cамый правый бит(младший бит) имеет индекс 0,
-            а самый левый бит(старший бит) имеет индекс N - 1 для std::bitset<N>
+            !!! CР°РјС‹Р№ РїСЂР°РІС‹Р№ Р±РёС‚(РјР»Р°РґС€РёР№ Р±РёС‚) РёРјРµРµС‚ РёРЅРґРµРєСЃ 0,
+            Р° СЃР°РјС‹Р№ Р»РµРІС‹Р№ Р±РёС‚(СЃС‚Р°СЂС€РёР№ Р±РёС‚) РёРјРµРµС‚ РёРЅРґРµРєСЃ N - 1 РґР»СЏ std::bitset<N>
 
-            Поэтому используем обратный порядок перебора (справа налево)
+            РџРѕСЌС‚РѕРјСѓ РёСЃРїРѕР»СЊР·СѓРµРј РѕР±СЂР°С‚РЅС‹Р№ РїРѕСЂСЏРґРѕРє РїРµСЂРµР±РѕСЂР° (СЃРїСЂР°РІР° РЅР°Р»РµРІРѕ)
     */ 
     for (int i = 0; i < table.size(); i++) {
         result[M - 1 - i] = value[N - 1 - table[i]];
@@ -39,24 +39,24 @@ template<size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value,
 }
 
 
-template<size_t N> std::bitset<N> сyclic_shift_left(std::bitset<N>& key, const int& shift) {
+template<size_t N> std::bitset<N> СЃyclic_shift_left(std::bitset<N>& key, const int& shift) {
     const int bytes = N / 2;
 
-    // Получаем левую половину (первые 5 бит) и выполняем циклический сдвиг влево на одну позицию
+    // РџРѕР»СѓС‡Р°РµРј Р»РµРІСѓСЋ РїРѕР»РѕРІРёРЅСѓ (РїРµСЂРІС‹Рµ 5 Р±РёС‚) Рё РІС‹РїРѕР»РЅСЏРµРј С†РёРєР»РёС‡РµСЃРєРёР№ СЃРґРІРёРі РІР»РµРІРѕ РЅР° РѕРґРЅСѓ РїРѕР·РёС†РёСЋ
     std::bitset<bytes> key_left_half(key.to_string().substr(0, bytes));
 
-    cout << "Левая половина ключа: " << key_left_half << '\n' << '\n';
+    cout << "Р›РµРІР°СЏ РїРѕР»РѕРІРёРЅР° РєР»СЋС‡Р°: " << key_left_half << '\n' << '\n';
 
     key_left_half = key_left_half << shift | key_left_half >> (5 - shift);
 
-    // Получаем левую половину (последние 5 бит) и выполняем циклический сдвиг влево на одну позицию
+    // РџРѕР»СѓС‡Р°РµРј Р»РµРІСѓСЋ РїРѕР»РѕРІРёРЅСѓ (РїРѕСЃР»РµРґРЅРёРµ 5 Р±РёС‚) Рё РІС‹РїРѕР»РЅСЏРµРј С†РёРєР»РёС‡РµСЃРєРёР№ СЃРґРІРёРі РІР»РµРІРѕ РЅР° РѕРґРЅСѓ РїРѕР·РёС†РёСЋ
     std::bitset<bytes> key_right_half(key.to_string().substr(bytes, bytes));
 
-    cout << "Правая половина ключа: " << key_right_half << '\n' << '\n';
+    cout << "РџСЂР°РІР°СЏ РїРѕР»РѕРІРёРЅР° РєР»СЋС‡Р°: " << key_right_half << '\n' << '\n';
 
     key_right_half = key_right_half << shift | key_right_half >> (bytes - shift);
 
-    // Объединяем две половинки в один ключ
+    // РћР±СЉРµРґРёРЅСЏРµРј РґРІРµ РїРѕР»РѕРІРёРЅРєРё РІ РѕРґРёРЅ РєР»СЋС‡
     key = (key_left_half.to_ulong() << bytes) | key_right_half.to_ulong();
 
     return key;
@@ -64,44 +64,44 @@ template<size_t N> std::bitset<N> сyclic_shift_left(std::bitset<N>& key, const i
 
 
 
-// Функция для генерации ключей
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё РєР»СЋС‡РµР№
 vector<bit_8_t> generate_keys() {
-    vector<bit_8_t> keys(2);    // Два подключа на 8 бит каждый
+    vector<bit_8_t> keys(2);    // Р”РІР° РїРѕРґРєР»СЋС‡Р° РЅР° 8 Р±РёС‚ РєР°Р¶РґС‹Р№
 
-    cout << "Заданный ключ: " << KEY << '\n' << '\n';
+    cout << "Р—Р°РґР°РЅРЅС‹Р№ РєР»СЋС‡: " << KEY << '\n' << '\n';
 
 
     bit_10_t key = permute<10, 10>(KEY, P10);
-    cout << "Перестановка P10: " << key << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° P10: " << key << '\n' << '\n';
 
 
-    cout << "\n\t *** Циклический свдиг влево на одну позицию (каждой половины ключа) ***\n";
+    cout << "\n\t *** Р¦РёРєР»РёС‡РµСЃРєРёР№ СЃРІРґРёРі РІР»РµРІРѕ РЅР° РѕРґРЅСѓ РїРѕР·РёС†РёСЋ (РєР°Р¶РґРѕР№ РїРѕР»РѕРІРёРЅС‹ РєР»СЋС‡Р°) ***\n";
 
-    key = сyclic_shift_left<10>(key, 1);
-    cout << "Объединенный ключ: " << key << '\n' << '\n';
+    key = СЃyclic_shift_left<10>(key, 1);
+    cout << "РћР±СЉРµРґРёРЅРµРЅРЅС‹Р№ РєР»СЋС‡: " << key << '\n' << '\n';
 
 
-    cout << "\n\t **** Генерация ключа №1 ****\n\n";
+    cout << "\n\t **** Р“РµРЅРµСЂР°С†РёСЏ РєР»СЋС‡Р° в„–1 ****\n\n";
 
     keys.at(0) = permute<10, 8>(key, P8);
-    cout << "Перестановка P8: " << keys.at(0) << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° P8: " << keys.at(0) << '\n' << '\n';
 
-    cout << "\t Ключ №1 = " << keys.at(0) << '\n' << '\n' << '\n';
-
-
-    cout << "\n\t **** Генерация ключа №2 ****\n\n";
+    cout << "\t РљР»СЋС‡ в„–1 = " << keys.at(0) << '\n' << '\n' << '\n';
 
 
-    cout << "\n\t *** Циклический свдиг влево на две позицию (каждой половины ключа) ***\n";
+    cout << "\n\t **** Р“РµРЅРµСЂР°С†РёСЏ РєР»СЋС‡Р° в„–2 ****\n\n";
 
-    key = сyclic_shift_left<10>(key, 2);
-    cout << "Объединенный ключ: " << key << '\n' << '\n';
+
+    cout << "\n\t *** Р¦РёРєР»РёС‡РµСЃРєРёР№ СЃРІРґРёРі РІР»РµРІРѕ РЅР° РґРІРµ РїРѕР·РёС†РёСЋ (РєР°Р¶РґРѕР№ РїРѕР»РѕРІРёРЅС‹ РєР»СЋС‡Р°) ***\n";
+
+    key = СЃyclic_shift_left<10>(key, 2);
+    cout << "РћР±СЉРµРґРёРЅРµРЅРЅС‹Р№ РєР»СЋС‡: " << key << '\n' << '\n';
 
 
     keys.at(1) = permute<10, 8>(key, P8);
-    cout << "Перестановка P8: " << keys.at(1) << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° P8: " << keys.at(1) << '\n' << '\n';
 
-    cout << "\t Ключ №2 = " << keys.at(1) << '\n' << '\n' << '\n';
+    cout << "\t РљР»СЋС‡ в„–2 = " << keys.at(1) << '\n' << '\n' << '\n';
 
 
     return keys;
@@ -109,13 +109,13 @@ vector<bit_8_t> generate_keys() {
 
 
 int sbox(bit_4_t value, const int S[4][4]) {
-    // Получаем двоичную строку (первый бит + последний бит)
+    // РџРѕР»СѓС‡Р°РµРј РґРІРѕРёС‡РЅСѓСЋ СЃС‚СЂРѕРєСѓ (РїРµСЂРІС‹Р№ Р±РёС‚ + РїРѕСЃР»РµРґРЅРёР№ Р±РёС‚)
     bit_2_t row_2(value.to_string().substr(0, 1) + value.to_string().substr(3, 1));
-    cout << "Двоичная строка: " << row_2 << '\n' << '\n';
+    cout << "Р”РІРѕРёС‡РЅР°СЏ СЃС‚СЂРѕРєР°: " << row_2 << '\n' << '\n';
 
-    // Получаем двоичный столбец (2 бита по-середине)
+    // РџРѕР»СѓС‡Р°РµРј РґРІРѕРёС‡РЅС‹Р№ СЃС‚РѕР»Р±РµС† (2 Р±РёС‚Р° РїРѕ-СЃРµСЂРµРґРёРЅРµ)
     bit_2_t col_2(value.to_string().substr(1, 2));
-    cout << "Двоичный столбец: " << col_2 << '\n' << '\n';
+    cout << "Р”РІРѕРёС‡РЅС‹Р№ СЃС‚РѕР»Р±РµС†: " << col_2 << '\n' << '\n';
 
     int row = row_2.to_ulong();
     int col = col_2.to_ulong();
@@ -124,98 +124,98 @@ int sbox(bit_4_t value, const int S[4][4]) {
 }
 
 
-// Функция для шифрования символа
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°
 bit_8_t encrypt_char(bit_8_t plaintext_8) {
     vector<bit_8_t> keys = generate_keys();
 
-    cout << "Изначальный код символа: " << plaintext_8 << '\n' << '\n';
+    cout << "РР·РЅР°С‡Р°Р»СЊРЅС‹Р№ РєРѕРґ СЃРёРјРІРѕР»Р°: " << plaintext_8 << '\n' << '\n';
 
     plaintext_8 = permute<8, 8>(plaintext_8, IP);
-    cout << "Перестановка IP: " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° IP: " << plaintext_8 << '\n' << '\n';
 
 
 
-    cout << "\n\t**** Вычисление шифрование f ключа №1 ****";
+    cout << "\n\t**** Р’С‹С‡РёСЃР»РµРЅРёРµ С€РёС„СЂРѕРІР°РЅРёРµ f РєР»СЋС‡Р° в„–1 ****";
 
-    // Получаем правую половину (последние 4 бит)
+    // РџРѕР»СѓС‡Р°РµРј РїСЂР°РІСѓСЋ РїРѕР»РѕРІРёРЅСѓ (РїРѕСЃР»РµРґРЅРёРµ 4 Р±РёС‚)
     bit_4_t plaintext_right_IP(plaintext_8.to_string().substr(4, 4));
     plaintext_8 = permute<4, 8>(plaintext_right_IP, EP);
-    cout << "Перестановка E/P(R): " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° E/P(R): " << plaintext_8 << '\n' << '\n';
 
 
     plaintext_8 = ( plaintext_8 ^ keys[0] );
-    cout << "Операция XOR(E/P(R), k1): " << plaintext_8 << '\n' << '\n';
+    cout << "РћРїРµСЂР°С†РёСЏ XOR(E/P(R), k1): " << plaintext_8 << '\n' << '\n';
 
 
-    // Получаем левую половину (последние 4 бит)
+    // РџРѕР»СѓС‡Р°РµРј Р»РµРІСѓСЋ РїРѕР»РѕРІРёРЅСѓ (РїРѕСЃР»РµРґРЅРёРµ 4 Р±РёС‚)
     bit_4_t plaintext_left(plaintext_8.to_string().substr(0, 4));
-    // Получаем правую половину (последние 4 бит)
+    // РџРѕР»СѓС‡Р°РµРј РїСЂР°РІСѓСЋ РїРѕР»РѕРІРёРЅСѓ (РїРѕСЃР»РµРґРЅРёРµ 4 Р±РёС‚)
     bit_4_t plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
-    cout << "Левая часть: " << plaintext_left << '\n' << '\n';
-    cout << "Правая часть: " << plaintext_right << '\n' << '\n';
+    cout << "Р›РµРІР°СЏ С‡Р°СЃС‚СЊ: " << plaintext_left << '\n' << '\n';
+    cout << "РџСЂР°РІР°СЏ С‡Р°СЃС‚СЊ: " << plaintext_right << '\n' << '\n';
 
 
     bit_2_t plaintext_left_2 = sbox(plaintext_left, S0);
     bit_2_t plaintext_right_2 = sbox(plaintext_right, S1);
     bit_4_t plaintext_4 = (plaintext_left_2.to_ulong() << 2) | plaintext_right_2.to_ulong();
-    cout << "Результат работы S-матриц: " << plaintext_4 << '\n' << '\n';
+    cout << "Р РµР·СѓР»СЊС‚Р°С‚ СЂР°Р±РѕС‚С‹ S-РјР°С‚СЂРёС†: " << plaintext_4 << '\n' << '\n';
 
 
     plaintext_4 = permute<4, 4>(plaintext_4, P4);
-    cout << "Перестановка P4: " << plaintext_4 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° P4: " << plaintext_4 << '\n' << '\n';
 
 
     plaintext_4 = plaintext_left ^ plaintext_4;
-    cout << "Операция XOR(L, P4): " << plaintext_4 << '\n' << '\n';
+    cout << "РћРїРµСЂР°С†РёСЏ XOR(L, P4): " << plaintext_4 << '\n' << '\n';
 
     plaintext_8 = (plaintext_right_IP.to_ulong() << 4) | plaintext_4.to_ulong();
-    cout << "Перестановка SW: " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° SW: " << plaintext_8 << '\n' << '\n';
 
 
 
-    cout << "\n\t**** Вычисление шифрование f ключа №2 ****";
+    cout << "\n\t**** Р’С‹С‡РёСЃР»РµРЅРёРµ С€РёС„СЂРѕРІР°РЅРёРµ f РєР»СЋС‡Р° в„–2 ****";
 
     bit_4_t plaintext_left_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(0, 4));
     bit_4_t plaintext_right_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
 
     plaintext_8 = permute<4, 8>(plaintext_right_main, EP);
-    cout << "Перестановка E/P(R): " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° E/P(R): " << plaintext_8 << '\n' << '\n';
 
     plaintext_8 = (plaintext_8 ^ keys[1]);
-    cout << "Операция XOR(E/P(R), k2): " << plaintext_8 << '\n' << '\n';
+    cout << "РћРїРµСЂР°С†РёСЏ XOR(E/P(R), k2): " << plaintext_8 << '\n' << '\n';
 
 
     plaintext_left = static_cast<bit_4_t>(plaintext_8.to_string().substr(0, 4));
     plaintext_right = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
-    cout << "Левая часть: " << plaintext_left << '\n' << '\n';
-    cout << "Правая часть: " << plaintext_right << '\n' << '\n';
+    cout << "Р›РµРІР°СЏ С‡Р°СЃС‚СЊ: " << plaintext_left << '\n' << '\n';
+    cout << "РџСЂР°РІР°СЏ С‡Р°СЃС‚СЊ: " << plaintext_right << '\n' << '\n';
 
 
     plaintext_left_2 = sbox(plaintext_left, S0);
     plaintext_right_2 = sbox(plaintext_right, S1);
     plaintext_4 = (plaintext_left_2.to_ulong() << 2) | plaintext_right_2.to_ulong();
-    cout << "Результат работы S-матриц: " << plaintext_4 << '\n' << '\n';
+    cout << "Р РµР·СѓР»СЊС‚Р°С‚ СЂР°Р±РѕС‚С‹ S-РјР°С‚СЂРёС†: " << plaintext_4 << '\n' << '\n';
 
 
     plaintext_4 = permute<4, 4>(plaintext_4, P4);
-    cout << "Перестановка P4: " << plaintext_4 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° P4: " << plaintext_4 << '\n' << '\n';
 
 
     plaintext_4 = plaintext_left_main ^ plaintext_4;
-    cout << "Операция XOR(L, P4): " << plaintext_4 << '\n' << '\n';
+    cout << "РћРїРµСЂР°С†РёСЏ XOR(L, P4): " << plaintext_4 << '\n' << '\n';
 
 
     plaintext_8 = (plaintext_4.to_ulong() << 4) | plaintext_right_main.to_ulong();
-    cout << "Перестановка SW(XOR(L, P4), R): " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° SW(XOR(L, P4), R): " << plaintext_8 << '\n' << '\n';
 
 
     plaintext_8 = permute<8, 8>(plaintext_8, IP_1);
-    cout << "Перестановка IP^-1: " << plaintext_8 << '\n' << '\n';
+    cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° IP^-1: " << plaintext_8 << '\n' << '\n';
    
     return plaintext_8;
 }
 
-// Функция для расшифрования символа
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°
 //int decrypt_char(bit ciphertext) {
 //    vector<bit_8_t> keys = generate_keys();
 //    ciphertext = permute<>(ciphertext, IP, 8);
@@ -240,7 +240,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
 //}
 
 
-//// Функция для шифрования строки
+//// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё
 //string encrypt_string(string plaintext) {
 //    string ciphertext = "";
 //    for (char c : plaintext) {
@@ -251,7 +251,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
 //}
 //
 //
-//// Функция для расшифрования строки
+//// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё
 //string decrypt_string(string ciphertext) {
 //    string plaintext = "";
 //    for (char c : ciphertext) {
