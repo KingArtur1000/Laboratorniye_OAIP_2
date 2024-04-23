@@ -324,24 +324,28 @@ string encrypt_string(string& plaintext) {
         cout << "\n\n\t\t*************** Шифрование символа №" << i << " ***************" << '\n' << '\n' << '\n';
 
         bit_8_t cipherchar = encrypt_char(c);
-
-        cout << cipherchar << '\n';
-
         ciphertext += static_cast<char>(cipherchar.to_ulong());
+
+        i++;
+    }
+
+    return ciphertext;
+}
+
+
+// Функция для расшифрования строки
+string decrypt_string(string& ciphertext) {
+    string plaintext = "";
+    int i = 1;
+
+    for (char c : ciphertext) {
+        cout << "\n\n\t\t*************** Расшифрование символа №" << i << " ***************" << '\n' << '\n' << '\n';
+
+        bit_8_t plainchar = decrypt_char(c);
+        plaintext += static_cast<char>(plainchar.to_ulong());
 
         i++;
     }
 
     return plaintext;
 }
-
-
-// Функция для расшифрования строки
-//string decrypt_string(string ciphertext) {
-//    string plaintext = "";
-//    for (char c : ciphertext) {
-//        int plainchar = decrypt_char(c);
-//        plaintext += static_cast<char>(plainchar);
-//    }
-//    return plaintext;
-//}
