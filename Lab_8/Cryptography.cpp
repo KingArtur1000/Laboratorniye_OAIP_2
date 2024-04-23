@@ -32,7 +32,7 @@ template<size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value,
             Поэтому используем обратный порядок перебора (справа налево)
     */ 
     for (int i = 0; i < table.size(); i++) {
-        result[M - 1 - i] = value[N - 1 - table[i]];
+        result[M - 1 - i] = value[N - 1 - table.at(i)];
     }
 
     return result;
@@ -47,7 +47,7 @@ template<size_t N> std::bitset<N> сyclic_shift_left(std::bitset<N>& key, const 
 
     cout << "Левая половина ключа: " << key_left_half << '\n' << '\n';
 
-    key_left_half = key_left_half << shift | key_left_half >> (5 - shift);
+    key_left_half = key_left_half << shift | key_left_half >> (bytes - shift);
 
     // Получаем левую половину (последние 5 бит) и выполняем циклический сдвиг влево на одну позицию
     std::bitset<bytes> key_right_half(key.to_string().substr(bytes, bytes));
@@ -135,7 +135,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
 
 
 
-    cout << "\n\t**** Вычисление шифрование f ключа №1 ****";
+    cout << "\n\t**** Вычисление шифрование f1 ****\n\n";
 
     // Получаем правую половину (последние 4 бит)
     bit_4_t plaintext_right_IP(plaintext_8.to_string().substr(4, 4));
@@ -173,7 +173,7 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
 
 
 
-    cout << "\n\t**** Вычисление шифрование f ключа №2 ****";
+    cout << "\n\t**** Вычисление шифрование f2 ****";
 
     bit_4_t plaintext_left_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(0, 4));
     bit_4_t plaintext_right_main = static_cast<bit_4_t>(plaintext_8.to_string().substr(4, 4));
@@ -215,29 +215,49 @@ bit_8_t encrypt_char(bit_8_t plaintext_8) {
     return plaintext_8;
 }
 
+
 // Функция для расшифрования символа
-//int decrypt_char(bit ciphertext) {
-//    vector<bit_8_t> keys = generate_keys();
-//    ciphertext = permute<>(ciphertext, IP, 8);
-//    int left = ciphertext >> 4;
-//    int right = ciphertext & 0x0F;
-//    right = permute(right, EP, 8);
-//    right = right ^ keys[1];
-//    right = sbox(right >> 4, S0) << 2 | sbox(right & 0x0F, S1);
-//    right = permute(right, P4, 4);
-//    right = right ^ left;
-//    int temp = right;
-//    right = left;
-//    left = temp;
-//    right = permute(right, EP, 8);
-//    right = right ^ keys[0];
-//    right = sbox(right >> 4, S0) << 2 | sbox(right & 0x0F, S1);
-//    right = permute(right, P4, 4);
-//    right = right ^ left;
-//    int plaintext = (right << 4) | left;
-//    plaintext = permute(plaintext, IP_1, 8);
-//    return plaintext;
-//}
+bit_8_t decrypt_char(bit_8_t ciphertext_8) {
+    vector<bit_8_t> keys = generate_keys();
+
+    cout << "\tИзначальный код зашифрованного символа: " << ciphertext_8 << '\n' << '\n';
+
+    ciphertext_8 = permute<8, 8>(ciphertext_8, IP);
+    cout << "Перестановка IP: " << ciphertext_8 << '\n' << '\n';
+
+    bit_4_t ciphertext_left_IP = static_cast<bit_4_t>(ciphertext_8.to_string().substr(0, 4));
+    bit_4_t ciphertext_right_IP = static_cast<bit_4_t>(ciphertext_8.to_string().substr(4, 4));
+
+    cout << "Левая часть: " << ciphertext_left_IP << '\n';
+    cout << "Правая часть: " << ciphertext_right_IP << '\n' << '\n';
+
+    ciphertext_8 = permute<4, 8>(ciphertext_right_IP, EP);
+    cout << "Перестановка EP: " << ciphertext_8 << '\n' << '\n';
+
+    ciphertext_8 = ciphertext_8 ^ keys.at(1);
+    cout << "Операция XOR(L, P4): " << ciphertext_8 << '\n' << '\n';
+
+    bit_4_t ciphertext_left = static_cast<bit_4_t>(ciphertext_8.to_string().substr(0, 4));
+    bit_4_t ciphertext_right = static_cast<bit_4_t>(ciphertext_8.to_string().substr(4, 4));
+
+    cout << "Левая часть: " << ciphertext_left << '\n';
+    cout << "Правая часть: " << ciphertext_right << '\n' << '\n';
+
+    bit_2_t ciphertext_left_2 = sbox(ciphertext_left, S0);
+    bit_2_t ciphertext_right_2 = sbox(ciphertext_right, S1);
+    bit_4_t ciphertext_4 = (ciphertext_left_2.to_ulong() << 2) | ciphertext_right_2.to_ulong();
+    cout << "Результат работы S-матриц: " << ciphertext_4 << '\n' << '\n';
+
+    ciphertext_4 = permute<4, 4>(ciphertext_4, P4);
+    cout << "Перестановка P4: " << ciphertext_4 << '\n' << '\n';
+
+    ciphertext_4 = ciphertext_4 ^ ciphertext_left_IP;
+    cout << "Операция XOR(L, P4): " << ciphertext_4 << '\n' << '\n';
+
+
+    return ciphertext_8;
+}
+
 
 
 //// Функция для шифрования строки

@@ -16,7 +16,8 @@ using std::string;
 
 class Symbol {
 
-    char symbol = '\0';
+    char symbol_original = '\0';
+    char symbol_encrypted = '\0';
 
 
     void input(char& symbol) {
@@ -27,12 +28,13 @@ class Symbol {
     void encode() {
         cout << "\n\t\t***** Процесс зашифрования символа *****\n\n";
 
-        input(symbol);
+        input(symbol_original);
 
-        bit_8_t ciphertext = encrypt_char(symbol);
+        bit_8_t ciphertext = encrypt_char(symbol_original);
 
-        cout << "Зашифрованный символ: " << static_cast<char>(ciphertext.to_ulong()) << '\n' << '\n';
+        symbol_encrypted = static_cast<char>(ciphertext.to_ulong());
 
+        cout << "Зашифрованный символ: " << symbol_encrypted << '\n' << '\n';
     }
 
 
@@ -46,9 +48,9 @@ class Symbol {
     void decode() {
         cout << "\tПроцесс расшифрования символа:\n\n";
 
-        //int plaintext = decrypt_char(symbol);
+        bit_8_t plaintext = decrypt_char(symbol_encrypted);
 
-        //cout << "Расшифрованный символ: " << static_cast<char>(plaintext) << '\n';
+        cout << "Расшифрованный символ: " << static_cast<char>(plaintext.to_ulong()) << '\n';
     }
 
 
