@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include <vector>
 #include <bitset>
@@ -16,10 +16,10 @@ using bit_4_t = std::bitset<4>;
 using bit_2_t = std::bitset<2>;
 
 
-vector<bit_8_t> generate_keys();	// Функция для генерации подключей
-template <size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value, const vector<int>& table);	// Функции для операций замены и перестановки
+vector<bit_8_t> generate_keys();	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РіРµРЅРµСЂР°С†РёРё РїРѕРґРєР»СЋС‡РµР№
+template <size_t N, size_t M> std::bitset<M> permute(const std::bitset<N>& value, const vector<int>& table);	// Р¤СѓРЅРєС†РёРё РґР»СЏ РѕРїРµСЂР°С†РёР№ Р·Р°РјРµРЅС‹ Рё РїРµСЂРµСЃС‚Р°РЅРѕРІРєРё
 int sbox(bit_4_t value, const int S[4][4]);
-bit_8_t encrypt_char(bit_8_t plaintext_8);	// Функция для шифрования символа
-bit_8_t decrypt_char(bit_8_t ciphertext_8);	// Функция для расшифрования символа
-string encrypt_string(string& plaintext);	// Функция для шифрования строки
-string decrypt_string(string& ciphertext);	// Функция для расшифрования строки
+bit_8_t encrypt_char(bit_8_t plaintext_8);	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°
+bit_8_t decrypt_char(bit_8_t ciphertext_8);	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІР°РЅРёСЏ СЃРёРјРІРѕР»Р°
+string encrypt_string(string& plaintext);	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ С€РёС„СЂРѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё
+string decrypt_string(string& ciphertext);	// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂР°СЃС€РёС„СЂРѕРІР°РЅРёСЏ СЃС‚СЂРѕРєРё

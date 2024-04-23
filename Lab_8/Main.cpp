@@ -1,4 +1,4 @@
-#include "Lab_8.h"	//Подключили собственный заголовочный файл
+п»ї#include "Lab_8.h"	//РџРѕРґРєР»СЋС‡РёР»Рё СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р»
 
 
 int main() {
@@ -10,18 +10,18 @@ int main() {
     int choice = 0;
     int value = 0;
     bool flag = true;
-    string message = "Завершение работы...";
+    string message = "Р—Р°РІРµСЂС€РµРЅРёРµ СЂР°Р±РѕС‚С‹...";
 
     Symbol symbol = {};
     String string = {};
 
 
     do {
-        cout << "\n\tС чем будем работать? :)\n";
-        cout << "1) Символ '@'\n";
-        cout << "2) Строка \"строка\"\n";
-        cout << "3) Выход\n";
-        cout << "\tВаш выбор --> ";     cin >> choice;     cout << '\n' << '\n';
+        cout << "\n\tРЎ С‡РµРј Р±СѓРґРµРј СЂР°Р±РѕС‚Р°С‚СЊ? :)\n";
+        cout << "1) РЎРёРјРІРѕР» '@'\n";
+        cout << "2) РЎС‚СЂРѕРєР° \"СЃС‚СЂРѕРєР°\"\n";
+        cout << "3) Р’С‹С…РѕРґ\n";
+        cout << "\tР’Р°С€ РІС‹Р±РѕСЂ --> ";     cin >> choice;     cout << '\n' << '\n';
 
         switch (static_cast<MAIN_MENU>(choice)) {
         case MAIN_MENU::SYMBOL:     symbol.symbol_menu();   break;

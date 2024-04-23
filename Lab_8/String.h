@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include <iostream>
 #include <string>
 
 #include "enums.h"
 #include "functions_extra.h"
-#include "Ñryptography.h"
+#include "Ð¡ryptography.h"
 
 
 using std::cout;
@@ -19,11 +19,11 @@ class String {
     string str_encrypted = "";
 
     void encode() {
-        cout << "\n\t\t\t********** Ïðîöåññ çàøèôðîâàíèÿ ñòðîêè **********\n\n";
+        cout << "\n\t\t\t********** ÐŸÑ€Ð¾Ñ†ÐµÑÑ Ð·Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ ÑÑ‚Ñ€Ð¾ÐºÐ¸ **********\n\n";
 
         string str_original = "";
 
-        cout << "\tÂâåäèòå ñòðîêó äëÿ øèôðîâàíèÿ --> ";
+        cout << "\tÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð´Ð»Ñ ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ --> ";
         cin.clear(); cin.ignore();
         std::getline(cin, str_original);   cout << '\n' << '\n';
 
@@ -32,11 +32,11 @@ class String {
 
 
     void decode() {
-        cout << "\n\t\t\t********** Ïðîöåññ ðàñøèôðîâàíèÿ ñòðîêè **********\n\n";
+        cout << "\n\t\t\t********** ÐŸÑ€Ð¾Ñ†ÐµÑÑ Ñ€Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ ÑÑ‚Ñ€Ð¾ÐºÐ¸ **********\n\n";
 
         str_original = decrypt_string(str_encrypted);
 
-        cout << "\n\t\tÐàñøèôðîâàííàÿ ñòðîêà: " << str_original << '\n' << '\n';
+        cout << "\n\t\tÐ Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ð½Ð½Ð°Ñ ÑÑ‚Ñ€Ð¾ÐºÐ°: " << str_original << '\n' << '\n';
     }
 
 
@@ -45,14 +45,14 @@ public:
     void string_menu() {
         int choice = 0;
         bool flag = true;
-        string message = "Âîçâðàùàåìñÿ â îñíîâíîå ìåíþ...\n";
+        string message = "Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÐ¼ÑÑ Ð² Ð¾ÑÐ½Ð¾Ð²Ð½Ð¾Ðµ Ð¼ÐµÐ½ÑŽ...\n";
 
         do {
-            cout << "\n\t\t**** ÑÒÐÎÊÀ ****\n";
-            cout << "1) Çàøèôðîâàòü ñòðîêó\n";
-            cout << "2) Ðàñøèôðîâàòü ñòðîêó\n";
-            cout << "3) Âåðíóòüñÿ\n";
-            cout << "\tÂàø âûáîð --> ";       cin >> choice;      cout << '\n';
+            cout << "\n\t\t**** Ð¡Ð¢Ð ÐžÐšÐ ****\n";
+            cout << "1) Ð—Ð°ÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ\n";
+            cout << "2) Ð Ð°ÑÑˆÐ¸Ñ„Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ\n";
+            cout << "3) Ð’ÐµÑ€Ð½ÑƒÑ‚ÑŒÑÑ\n";
+            cout << "\tÐ’Ð°Ñˆ Ð²Ñ‹Ð±Ð¾Ñ€ --> ";       cin >> choice;      cout << '\n';
 
 
             switch (static_cast<STRING_MENU>(choice)) {
