@@ -75,7 +75,7 @@ void task1() {
 		cout << "\tЧто вы хотите сделать?\n\n";
 		cout << "1) Ввести только строку\n";
 		cout << "2) Ввести строку и число\n";
-		cout << "Ваш выбор --> "; cin >> choice; cout << '\n';
+		cout << "\tВаш выбор --> "; cin >> choice; cout << '\n';
 		cin.clear(); cin.ignore();
 
 		switch (choice) {
