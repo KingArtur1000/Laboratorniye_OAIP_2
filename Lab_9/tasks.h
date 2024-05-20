@@ -12,7 +12,7 @@ using std::cin;
 using std::cout;
 using std::string;
 using std::vector;
-using std::isdigit;
+using std::stod;
 
 
 void task1();

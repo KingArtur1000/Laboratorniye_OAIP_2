@@ -15,24 +15,29 @@ string input(const char* msg, string &str) {
 
 
 vector<int> input(const char* msg, vector<int> &arr) {
-	int numb = 0;
+	string numb_str = "";
+
+	cin.clear(); cin.ignore();
 
 	for (int i = 0; i < arr.size(); i++) {
 		cout << msg;
-		cin >> numb; cout << '\n' << '\n';
+		getline(cin, numb_str);
 
 		try {
-			if (cin.fail()) {
-				cin.clear();
-				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	// Пропустили неправильный ввод
+			double numb = stod(numb_str);
+			int result = (int)(numb);
 
-				throw "Введено не целочисленное значение!\n\n";
+			if (result != numb) {
+				cout << "Число " << numb << " было преобразовано в " << result << "\n\n";
 			}
 
 			arr.at(i) = numb;
 		}
-		catch (const char* msg) {
-			cout << msg;
+		catch (const std::invalid_argument& e) {
+			std::cerr << "Некорректное значение: строка не может быть преобразована в число" << '\n';
+		}
+		catch (const std::out_of_range& e) {
+			std::cerr << "Число выходит за пределы допустимого диапазона" << '\n';
 		}
 	}
 
