@@ -8,7 +8,6 @@ template<typename T> void input(const char* msg, T &var) {
 
 
 string input(const char* msg, string &str) {
-	cin.clear(); cin.ignore();
 	cout << msg; getline(cin, str); cout << '\n';
 	cout << "Ваша строка: " << str << '\n' << '\n';
 	return str;
@@ -16,35 +15,25 @@ string input(const char* msg, string &str) {
 
 
 vector<int> input(const char* msg, vector<int> &arr) {
-	try {
-		string str = "";
+	int numb = 0;
 
-		cin.clear(); cin.ignore();
+	for (int i = 0; i < arr.size(); i++) {
+		cout << msg;
+		cin >> numb; cout << '\n' << '\n';
 
-		for (int i = 0; i < arr.size(); i++) {
+		try {
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	// Пропустили неправильный ввод
 
-			cout << msg; getline(cin, str); cout << '\n';
-
-			// Проверяем каждый символ строки на целочисленность
-			for (int j = 0; j < str.size(); j++) {
-				if ( !isdigit(str.at(j)) ) {
-					throw str;
-				}
+				throw "Введено не целочисленное значение!\n\n";
 			}
 
-			arr.at(i) = atoi(str.c_str());
+			arr.at(i) = numb;
 		}
-
-		cout << '\n';
-	}
-	catch (int el) {
-		cout << el << " - это не целочисленное значение!\n\n";
-	}
-	catch (char symbol) {
-		cout << symbol << " - это не целочисленное значение!\n\n";
-	}
-	catch (string str) {
-		cout << str << " - это не целочисленное значение!\n\n";
+		catch (const char* msg) {
+			cout << msg;
+		}
 	}
 
 	return arr;
@@ -125,11 +114,11 @@ void task3() {
 	
 	arr = input("Введите элемент массива (целочисленное число) --> ", arr);
 
-	cout << "Ваш массив из целых чисел: { ";
+	cout << "\tВаш массив из целых чисел: { ";
 	for (int i = 0; i < arr.size() - 1; i++) {
 		cout << arr.at(i) << ", ";
 	}
-	cout << arr.at(arr.size() - 1) << " }";
+	cout << arr.at(arr.size() - 1) << " }\n\n";
 }
 
 
@@ -171,6 +160,7 @@ void task5() {
 void task6() {
 	string str = "";
 	
+	cin.clear(); cin.ignore();
 	input("Введите строку --> ", str);
 
 	try {
