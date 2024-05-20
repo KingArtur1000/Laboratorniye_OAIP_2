@@ -28,7 +28,7 @@ vector<int> input(const char* msg, vector<int> &arr) {
 			int result = (int)(numb);
 
 			if (result != numb) {
-				cout << "Число " << numb << " было преобразовано в " << result << "\n\n";
+				cout << "Число " << numb << " было преобразовано в " << result << '\n';
 			}
 
 			arr.at(i) = numb;
@@ -48,7 +48,7 @@ vector<int> input(const char* msg, vector<int> &arr) {
 double divide(double a, double b) {
 	try {
 		if (b == 0) {
-			throw "Деление на ноль невозможно!\n";
+			throw "Деление на ноль невозможно! ( наверное?:) )\n";
 		}
 	}
 	catch (const char *msg) {
@@ -169,18 +169,18 @@ void task6() {
 	input("Введите строку --> ", str);
 
 	try {
-		// Проверяем каждый символ строки на целочисленность
-		for (int i = 0; i < str.size(); i++) {
-			if (!isdigit(str.at(i))) {
-				throw str + " - не является целочисленным значением";
-			}
-		}
+		double numb = stod(str);
+		int result = (int)(numb);
 
-		cout << str << " - целочисленное значение!\n\n";
+		if (result != numb) {
+			cout << "Число " << numb << " было преобразовано в " << result << '\n';
+		}
 	}
-	catch (string msg) {
-		cout << msg << '\n';
+	catch (const std::invalid_argument& e) {
+		std::cerr << "Некорректное значение: строка не может быть преобразована в число" << '\n';
 	}
-	
+	catch (const std::out_of_range& e) {
+		std::cerr << "Число выходит за пределы допустимого диапазона" << '\n';
+	}
 }
 
