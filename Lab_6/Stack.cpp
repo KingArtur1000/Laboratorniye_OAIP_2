@@ -1,4 +1,4 @@
-#include "Stack.h"
+ï»¿#include "Stack.h"
 
 
 Stack::Stack() : top(nullptr) {}
@@ -19,7 +19,7 @@ bool Stack::isEmpty() const {
 void Stack::push(int info) {
     Stack_Node* newNode = new Stack_Node;
 
-    cout << "\tÂâåäèòå çíà÷åíèå äëÿ äîáàâëåíèÿ --> ";      cin >> info;    cout << '\n';
+    cout << "\tÐ’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð´Ð»Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ --> ";      cin >> info;    cout << '\n';
 
     newNode->info = info;
     newNode->next = top;
@@ -33,7 +33,7 @@ void Stack::pop() {
         top = top->next;
         delete buffer;
     }
-    else { cout << "\n\tÑòåê ïóñò!" << '\n'; }
+    else { cout << "\n\tÐ¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << '\n'; }
 }
 
 
@@ -58,7 +58,7 @@ void Stack::print() {
         string cursor = " ---> ";
         string stdNullptr = "nullptr";
 
-        cout << "\nÑòåê: ";
+        cout << "\nÐ¡Ñ‚ÐµÐº: ";
 
         for (Stack_Node* buffer = top; buffer != nullptr; buffer = buffer->next) {
             cout << buffer->info << cursor;
@@ -66,7 +66,7 @@ void Stack::print() {
 
         cout << stdNullptr << '\n';
     }
-    else { cout << "\n\tÑòåê ïóñò!" << '\n'; }
+    else { cout << "\n\tÐ¡Ñ‚ÐµÐº Ð¿ÑƒÑÑ‚!" << '\n'; }
 
     
 }
