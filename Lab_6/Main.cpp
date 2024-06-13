@@ -1,4 +1,4 @@
-#include "lab_6.h"	//Подключили собственный заголовочный файл
+п»ї#include "lab_6.h"	//РџРѕРґРєР»СЋС‡РёР»Рё СЃРѕР±СЃС‚РІРµРЅРЅС‹Р№ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Р№ С„Р°Р№Р»
 
 
 int main() {
@@ -11,16 +11,16 @@ int main() {
     int value = 0;
     int position = 0;
     bool flag = true;
-    string message = "Завершение программы...";
+    string message = "Р—Р°РІРµСЂС€РµРЅРёРµ РїСЂРѕРіСЂР°РјРјС‹...";
 
 
     do {
-        cout << "\n\t С чем работаем? :)\n";
-        cout << "1) Дек\n";
-        cout << "2) Очередь\n";
-        cout << "3) Стек\n";
-        cout << "4) Выход\n";
-        cout << "\tВаш выбор --> ";     cin >> choice;     cout << '\n' << '\n';
+        cout << "\n\t РЎ С‡РµРј СЂР°Р±РѕС‚Р°РµРј? :)\n";
+        cout << "1) Р”РµРє\n";
+        cout << "2) РћС‡РµСЂРµРґСЊ\n";
+        cout << "3) РЎС‚РµРє\n";
+        cout << "4) Р’С‹С…РѕРґ\n";
+        cout << "\tР’Р°С€ РІС‹Р±РѕСЂ --> ";     cin >> choice;     cout << '\n' << '\n';
 
         switch (static_cast<MAIN_MENU>(choice)) {
         case MAIN_MENU::DACK:     Dack_Menu(value, position);       break;
